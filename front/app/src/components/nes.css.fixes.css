@@ -1,0 +1,28 @@
+.nes-radio:hover + span::before, .nes-radio:focus + span::before {
+  animation: none !important;
+}
+
+.nes-radio + span::before {
+  position: absolute;
+  top: -2px;
+  left: -20px;
+  content: "";
+  width: 2px;
+  height: 2px;
+  color: #adafbc;
+  box-shadow: 2px 2px,4px 2px,2px 4px,4px 4px,6px 4px,8px 4px,2px 6px,4px 6px,6px 6px,8px 6px,10px 6px,2px 8px,4px 8px,6px 8px,8px 8px,10px 8px,12px 8px,2px 10px,4px 10px,6px 10px,8px 10px,10px 10px,2px 12px,4px 12px,6px 12px,8px 12px,2px 14px,4px 14px;
+}
+
+@-moz-document url-prefix() {
+  .nes-radio + span::before {
+    -webkit-box-shadow: 2px 2px 0 0.020em,4px 2px 0 0.020em,2px 4px 0 0.020em,4px 4px 0 0.020em,6px 4px 0 0.020em,8px 4px 0 0.020em,2px 6px 0 0.020em,4px 6px 0 0.020em,6px 6px 0 0.020em,8px 6px 0 0.020em,10px 6px 0 0.020em,2px 8px 0 0.020em,4px 8px 0 0.020em,6px 8px 0 0.020em,8px 8px 0 0.020em,10px 8px 0 0.020em,12px 8px 0 0.020em,2px 10px 0 0.020em,4px 10px 0 0.020em,6px 10px 0 0.020em,8px 10px 0 0.020em,10px 10px 0 0.020em,2px 12px 0 0.020em,4px 12px 0 0.020em,6px 12px 0 0.020em,8px 12px 0 0.020em,2px 14px 0 0.020em,4px 14px 0 0.020em;
+  }
+}
+
+.nes-radio:checked:focus + span::before {
+  color: #212529;
+}
+
+.long-text {
+  font: 14px sans-serif !important;
+}

@@ -1,0 +1,85 @@
+body {
+  padding-top: 100px;
+  padding-left: 2em;
+  padding-right: 2em;
+  min-width: 350px;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+}
+
+@media (max-width: 1000px) {
+  body {
+    padding-top: 2em;
+  }
+}
+
+img.brand {
+  display: inline;
+  vertical-align: text-baseline;
+  margin: 0;
+  margin-right: 0.5em;
+}
+
+.app {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer {
+  transition: top 300ms ease-in;
+  text-align: center;
+}
+
+.footer > p > a {
+  text-decoration: none;
+}
+
+.nes-container {
+  overflow-wrap: break-word;
+}
+
+.nes-container:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+form > .nes-field:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.form-actions {
+  text-align: right;
+  width: 100%;
+  padding: 0;
+}
+
+nav.main-nav {
+  margin-bottom: 1em;
+}
+
+@media (min-width: 1000px) {
+  nav.main-nav > a:not(:last-child) > button.nes-btn {
+    margin-right: 0.5em;
+  }
+  nav.main-nav > a > button.nes-btn {
+    margin-top: 0.5em;
+  }
+}
+
+@media (max-width: 1000px) {
+  nav.main-nav > a:not(:last-child) > button.nes-btn {
+    margin-bottom: 0.5em;
+  }
+  nav.main-nav > a > button.nes-btn {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+  }
+}
