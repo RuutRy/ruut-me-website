@@ -20,10 +20,6 @@ output "REACT_APP_API_BASE_URL" {
   value = var.useAPIM ? module.apimApi[0].SERVICE_API_URI : module.api.URI
 }
 
-output "AZURE_LOCATION" {
-  value = var.location
-}
-
 output "APPLICATIONINSIGHTS_CONNECTION_STRING" {
   value     = module.applicationinsights.APPLICATIONINSIGHTS_CONNECTION_STRING
   sensitive = true
@@ -42,3 +38,7 @@ output "SERVICE_API_ENDPOINTS" {
   value = var.useAPIM ? [module.apimApi[0].SERVICE_API_URI, module.api.URI] : []
 }
 */
+
+output "AZURE_LOCATION" {
+  value = var.location
+}
