@@ -10,6 +10,7 @@ from bson.objectid import ObjectId
 from flask import Flask, request, jsonify, abort
 from flask.json import JSONEncoder
 from flask_cors import CORS
+from apiflask import APIFlask
 
 from pprint import pprint
 
@@ -37,8 +38,10 @@ mongo_client = pymongo.MongoClient(MONGO_URL)
 db = mongo_client.get_database()
 
 app = Flask(__name__)
+#app = APIFlask(__name__, spec_path='/openapi.yaml')
 CORS(app)
 app.json_encoder = CustomJSONEncoder
+#app.config['SPEC_FORMAT'] = 'yaml'
 
 
 @app.route("/")
