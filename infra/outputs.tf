@@ -1,3 +1,4 @@
+/*
 output "AZURE_COSMOS_CONNECTION_STRING_KEY" {
   value = local.cosmos_connection_string_key
 }
@@ -40,3 +41,4 @@ output "USE_APIM" {
 output "SERVICE_API_ENDPOINTS" {
   value = var.useAPIM ? [module.apimApi[0].SERVICE_API_URI, module.api.URI] : []
 }
+*/
