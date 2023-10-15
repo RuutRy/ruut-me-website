@@ -21,7 +21,7 @@ resource "azurerm_resource_group" "rg" {
 
   tags = local.tags
 }
-
+/*
 # ------------------------------------------------------------------------------------------------------
 # Deploy application insights
 # ------------------------------------------------------------------------------------------------------
@@ -166,4 +166,4 @@ module "apimApi" {
   api_path                 = "todo"
   api_backend_url          = module.api.URI
 }
-
+*/
