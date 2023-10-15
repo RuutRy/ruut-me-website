@@ -19,3 +19,8 @@ variable "useAPIM" {
   type        = bool
   default     = false
 }
+
+variable "subscription_id" {
+  description = "The current subscription id for the terraform instance"
+  type        = string
+}

@@ -64,6 +64,8 @@ jobs:
       # An exit code of 0 indicated no changes, 1 a terraform failure, 2 there are pending changes.
       - name: Terraform Plan
         id: tf-plan
+        env:
+          TF_VAR_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         run: |
           export exitcode=0
           terraform -chdir=infra plan -detailed-exitcode -no-color -out tfplan || export exitcode=$?
@@ -87,6 +89,8 @@ jobs:
       # Create string output of Terraform Plan
       - name: Create String Output
         id: tf-plan-string
+        env:
+          TF_VAR_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         run: |
           TERRAFORM_PLAN=$(terraform -chdir=infra show -no-color tfplan)
 
@@ -164,4 +168,6 @@ jobs:
 
       # Terraform Apply
       - name: Terraform Apply
+        env:
+          TF_VAR_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         run: terraform -chdir=infra apply -auto-approve tfplan
