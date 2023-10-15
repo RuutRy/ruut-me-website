@@ -49,7 +49,7 @@ jobs:
 
       # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
       - name: Terraform Init
-        run: terraform -chdir=infra init
+        run: terraform -chdir=infra init -backend-config="tenant_id=${{ secrets.AZURE_TENANT_ID }}" -backend-config="subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}"
 
       # Generates an execution plan for Terraform
       # An exit code of 0 indicated no changes, 1 a terraform failure, 2 there are pending changes.
@@ -57,7 +57,7 @@ jobs:
         id: tf-plan
         run: |
           export exitcode=0
-          terraform -chdir=infra plan -backend-config="tenant_id=${{ secrets.AZURE_TENANT_ID }}" -backend-config="subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}" -detailed-exitcode -no-color -out tfplan || export exitcode=$?
+          terraform -chdir=infra plan -detailed-exitcode -no-color -out tfplan || export exitcode=$?
 
           echo "exitcode=$exitcode" >> $GITHUB_OUTPUT
 
