@@ -1,9 +1,9 @@
 
 locals {
-  tags = { azd-env-name : var.environment_name, managed-by : "terraform" }
-  # sha                          = base64encode(sha256("${var.environment_name}${var.location}${data.azurerm_client_config.current.subscription_id}"))
-  # resource_token               = substr(replace(lower(local.sha), "[^A-Za-z0-9_]", ""), 0, 13)
-  # cosmos_connection_string_key = "AZURE-COSMOS-CONNECTION-STRING"
+  tags                         = { azd-env-name : var.environment_name, managed-by : "terraform" }
+  sha                          = base64encode(sha256("${var.environment_name}${var.location}${data.azurerm_client_config.current.subscription_id}"))
+  resource_token               = substr(replace(lower(local.sha), "[^A-Za-z0-9_]", ""), 0, 13)
+  cosmos_connection_string_key = "AZURE-COSMOS-CONNECTION-STRING"
 }
 # ------------------------------------------------------------------------------------------------------
 # Deploy resource Group
@@ -21,7 +21,7 @@ resource "azurerm_resource_group" "rg" {
 
   tags = local.tags
 }
-/*
+
 # ------------------------------------------------------------------------------------------------------
 # Deploy application insights
 # ------------------------------------------------------------------------------------------------------
@@ -166,4 +166,4 @@ module "apimApi" {
   api_path                 = "todo"
   api_backend_url          = module.api.URI
 }
-*/
+
