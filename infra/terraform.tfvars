@@ -1,2 +1,2 @@
-location = "swedencentral"
+location         = "swedencentral"
 environment_name = "prod"
