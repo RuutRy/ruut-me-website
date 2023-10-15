@@ -1,0 +1,69 @@
+openapi: 3.0.3
+info:
+  description: Ruut.me website
+  version: 3.0.3
+  title: ruut me website
+  contact:
+    email: elias.samuli@ekosfin.com
+
+paths:
+  /:
+    get:
+      parameters: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Successful response
+      summary: Index
+  /join:
+    post:
+      parameters: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Successful response
+      summary: Join
+  /signups:
+    get:
+      parameters: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Successful response
+      summary: Get Lagfest Signups
+  /lagfest-signup:
+    post:
+      parameters: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Successful response
+      summary: Lagfest Signup
+  /signups-fuksit:
+    get:
+      parameters: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Successful response
+      summary: Get Lagfest Signups Fuksit
+  /lagfest-signup-fuksi:
+    post:
+      parameters: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Successful response
+      summary: Lagfest Signup Fuksi
