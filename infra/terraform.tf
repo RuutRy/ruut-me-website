@@ -2,8 +2,8 @@ terraform {
   required_version = "1.4.6"
 
   backend "azurerm" {
-    resource_group_name  = "tfstate"
-    storage_account_name = "tfstate1241434742"
+    resource_group_name  = "terrafrom-resorce-group-www"
+    storage_account_name = "ruutmewebsitetf"
     container_name       = "tfstate"
     key                  = "terraform.tfstate"
     use_oidc             = true
