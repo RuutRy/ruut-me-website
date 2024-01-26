@@ -1,0 +1,62 @@
+name: Blob storage website CI
+
+on:
+  push:
+    paths:
+      - "front/**"
+      - ".github/workflows/react-upload.yaml"
+    branches:
+      - main
+
+# Special permissions required for OIDC authentication
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  NODE_VERSION: 11 # Yeah, I know it is old, but I ain't updating this
+  ARM_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID }}"
+  ARM_SUBSCRIPTION_ID: "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+  ARM_TENANT_ID: "${{ secrets.AZURE_TENANT_ID }}"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: npm install & build
+        working-directory: front/app
+        run: |
+          # Build and test the project, then
+          # deploy to Azure Web App.
+          yarn install
+          yarn build
+
+      - name: Az CLI login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Upload to blob storage
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az storage blob upload-batch --account-name odwdevstorage -d '$web' -s ./front/app/build
+
+      - name: Purge CDN endpoint
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az cdn endpoint purge --content-paths  "/*" --profile-name odw-cdn --name react-dev-cdn-endpoint --resource-group odw-frontend-dev
+
+      - name: logout
+        run: |
+          az logout
+        if: always()
