@@ -4,8 +4,8 @@
 
 resource "azurerm_storage_account" "react-storage-account" {
   name                      = "odw${var.env}storage"
-  resource_group_name       = azurerm_resource_group.react-rg.name
-  location                  = azurerm_resource_group.react-rg.location
+  resource_group_name       = var.resource_group_name
+  location                  = var.location
   account_kind              = var.account_kind
   enable_https_traffic_only = var.enable_https_traffic
   min_tls_version           = var.min_tls_version
