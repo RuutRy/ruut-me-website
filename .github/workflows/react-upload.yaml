@@ -52,12 +52,6 @@ jobs:
           inlineScript: |
             az storage blob upload-batch --account-name odwproductionstorage -d '$web' -s ./front/app/build
 
-      - name: Purge CDN endpoint
-        uses: azure/CLI@v1
-        with:
-          inlineScript: |
-            az cdn endpoint purge --content-paths  "/*" --profile-name odw-cdn --name react-dev-cdn-endpoint --resource-group rg-prod
-
       - name: logout
         run: |
           az logout
