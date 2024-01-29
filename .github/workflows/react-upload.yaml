@@ -50,7 +50,7 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            az storage blob upload-batch --account-name odwdevstorage -d '$web' -s ./front/app/build
+            az storage blob upload-batch --account-name odwproductionstorage -d '$web' -s ./front/app/build
 
       - name: Purge CDN endpoint
         uses: azure/CLI@v1
