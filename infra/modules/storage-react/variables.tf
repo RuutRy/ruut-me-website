@@ -1,36 +1,11 @@
-variable "resource_group" {
-  description = "The resource group"
-  default     = "ody"
-}
-
-variable "application_name" {
-  description = "The Spring Boot application name"
-  default     = "appody"
-}
-
 variable "location" {
   description = "The Azure location where all resources in this example should be created"
   default     = "centralindia"
 }
 variable "env" {}
 
-variable "create_resource_group" {
-  description = "Whether to create resource group and use it for all networking resources"
-  default     = false
-}
-
 variable "resource_group_name" {
   description = "The name of the resource group in which resources are created"
-  default     = ""
-}
-
-# variable "location" {
-#   description = "The location of the resource group in which resources are created"
-#   default     = ""
-# }
-
-variable "storage_account_name" {
-  description = "The name of the storage account to be created"
   default     = ""
 }
 
