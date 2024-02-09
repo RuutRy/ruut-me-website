@@ -49,10 +49,6 @@ resource "azurerm_cosmosdb_mongo_collection" "lagfest" {
   shard_key           = "uniqueKey"
   throughput          = 400
 
-  index {
-    keys   = ["_id"]
-    unique = true
-  }
 }
 
 resource "azurerm_cosmosdb_mongo_collection" "tatiseta" {
@@ -65,8 +61,4 @@ resource "azurerm_cosmosdb_mongo_collection" "tatiseta" {
   shard_key           = "uniqueKey"
   throughput          = 400
 
-  index {
-    keys   = ["_id"]
-    unique = true
-  }
 }
