@@ -1,24 +1,24 @@
 from datetime import datetime, timedelta
 import os
 import re
-import string
-import json
-import smtplib
-from email.message import EmailMessage
 from bson.objectid import ObjectId
 
 from flask import Flask, request, jsonify, abort
 from flask.json import JSONEncoder
 from flask_cors import CORS
-from apiflask import APIFlask
 
-from pprint import pprint
+from dotenv import load_dotenv
+import azure.functions as func
+
+app = func.FunctionApp()
 
 import pymongo
 import pytz
 
-from config import MONGO_URL, PORT
-from config import SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD
+# from config import MONGO_URL, PORT
+# from config import SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD
+load_dotenv()
+CONNECTION_STRING = os.environ.get("COSMOS_CONNECTION_STRING")
 
 TZ = pytz.timezone("Europe/Helsinki")
 signup_start = TZ.localize(datetime(2023, 2, 9, 16))
@@ -34,22 +34,52 @@ class CustomJSONEncoder(JSONEncoder):
         return JSONEncoder.default(self, obj)
 
 
-mongo_client = pymongo.MongoClient(MONGO_URL)
+mongo_client = pymongo.MongoClient(CONNECTION_STRING)
 db = mongo_client.get_database()
 
-app = Flask(__name__)
+# Create database if it doesn't exist
+db = mongo_client["signups"]
+if "signups" not in mongo_client.list_database_names():
+    # Create a database with 400 RU throughput that can be shared across
+    # the DB's collections
+    db.command({"customAction": "CreateDatabase", "offerThroughput": 400})
+    print("Created db '{}' with shared throughput.\n".format("signups"))
+else:
+    print("Using database: '{}'.\n".format("signups"))
+
+# Create database if it doesn't exist
+db = mongo_client["lagfest-signups-fuksit"]
+if "lagfest-signups-fuksit" not in mongo_client.list_database_names():
+    # Create a database with 400 RU throughput that can be shared across
+    # the DB's collections
+    db.command({"customAction": "CreateDatabase", "offerThroughput": 400})
+    print("Created db '{}' with shared throughput.\n".format("lagfest-signups-fuksit"))
+else:
+    print("Using database: '{}'.\n".format("lagfest-signups-fuksit"))
+
+# Create database if it doesn't exist
+db = mongo_client["lagfest-signups"]
+if "lagfest-signups" not in mongo_client.list_database_names():
+    # Create a database with 400 RU throughput that can be shared across
+    # the DB's collections
+    db.command({"customAction": "CreateDatabase", "offerThroughput": 400})
+    print("Created db '{}' with shared throughput.\n".format("lagfest-signups"))
+else:
+    print("Using database: '{}'.\n".format("lagfest-signups"))
+
+flask_app = Flask(__name__)
 #app = APIFlask(__name__, spec_path='/openapi.yaml')
-CORS(app)
-app.json_encoder = CustomJSONEncoder
+CORS(flask_app)
+flask_app.json_encoder = CustomJSONEncoder
 #app.config['SPEC_FORMAT'] = 'yaml'
 
 
-@app.route("/")
+@flask_app.get("/")
 def index():
     return "OK"
 
 
-@app.route("/join", methods=["POST"])
+@flask_app.post("/join")
 def join():
     data = request.get_json()
     if data is None:
@@ -95,34 +125,34 @@ def join():
             signup[field] = data[field]
 
     result = db["signups"].insert_one(signup)
-
-    try:
-        msg = EmailMessage()
-        msg.set_content(
-            "\n".join(
-                f"{str(key)}: {str(value)}"
-                for key, value in signup.items()
-                if key != "_id"
-            )
-        )
-        msg["Subject"] = f'RUUT liittyminen: {signup["name"]}'
-        msg["From"] = f"ruut-ilmot@ruut.me"
-        msg["To"] = "ruut.mem@gmail.com"
-        # msg["To"] = "juho.heiskanen@gmail.com"
-
-        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as s:
-            s.login(SMTP_USER, SMTP_PASSWORD)
-            s.send_message(msg)
-
-    except Exception as ex:
-        print("Could not send email, reverting...")
-        print(ex)
-        try:
-            db["signups"].delete_one({"_id": result.inserted_id})
-        except Exception as ex:
-            print(f'Could not revert signup for {signup["name"]}')
-            print(ex)
-        return jsonify({"message": "Sisäinen virhe", "retry": "true"}), 400
+# Disabled for now
+#    try:
+#        msg = EmailMessage()
+#        msg.set_content(
+#            "\n".join(
+#                f"{str(key)}: {str(value)}"
+#                for key, value in signup.items()
+#                if key != "_id"
+#            )
+#        )
+#        msg["Subject"] = f'RUUT liittyminen: {signup["name"]}'
+#        msg["From"] = f"ruut-ilmot@ruut.me"
+#        msg["To"] = "ruut.mem@gmail.com"
+#        # msg["To"] = "juho.heiskanen@gmail.com"
+#
+#        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as s:
+#            s.login(SMTP_USER, SMTP_PASSWORD)
+#            s.send_message(msg)
+#
+#    except Exception as ex:
+#        print("Could not send email, reverting...")
+#        print(ex)
+#        try:
+#            db["signups"].delete_one({"_id": result.inserted_id})
+#        except Exception as ex:
+#            print(f'Could not revert signup for {signup["name"]}')
+#            print(ex)
+#        return jsonify({"message": "Sisäinen virhe", "retry": "true"}), 400
 
     return jsonify(
         {
@@ -131,7 +161,7 @@ def join():
     )
 
 
-@app.route("/lagfest-signup-fuksi", methods=["POST"])
+@flask_app.post("/lagfest-signup-fuksi")
 def lagfest_signup_fuksi():
     now = datetime.now(tz=TZ)
     if now < signup_start_fuksi:
@@ -199,38 +229,38 @@ def lagfest_signup_fuksi():
 
     result = db["lagfest-signups-fuksit"].insert_one(signup)
 
-    try:
-        msg = EmailMessage()
-        msg.set_content(
-            "\n".join(
-                f"{str(key)}: {str(value)}"
-                for key, value in signup.items()
-                if key != "_id"
-            )
-        )
-        msg["Subject"] = f'Lagfest ilmo: {signup["name"]}'
-        msg["From"] = f"lagfest-ilmot-fuksit@ruut.me"
-        msg["To"] = "ruut.mem@gmail.com"
-        # msg['To'] = 'juho.heiskanen@gmail.com'
-
-        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as s:
-            s.login(SMTP_USER, SMTP_PASSWORD)
-            s.send_message(msg)
-
-    except Exception as ex:
-        print("Could not send email, reverting...")
-        print(ex)
-        try:
-            db["lagfest-signups-fuksit"].delete_one({"_id": result.inserted_id})
-        except Exception as ex:
-            print(f'Could not revert signup for {signup["name"]}')
-            print(ex)
-        return jsonify({"message": "Sisäinen virhe", "retry": "true"}), 400
+#    try:
+#        msg = EmailMessage()
+#        msg.set_content(
+#            "\n".join(
+#                f"{str(key)}: {str(value)}"
+#                for key, value in signup.items()
+#                if key != "_id"
+#            )
+#        )
+#        msg["Subject"] = f'Lagfest ilmo: {signup["name"]}'
+#        msg["From"] = f"lagfest-ilmot-fuksit@ruut.me"
+#        msg["To"] = "ruut.mem@gmail.com"
+#        # msg['To'] = 'juho.heiskanen@gmail.com'
+#
+#        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as s:
+#            s.login(SMTP_USER, SMTP_PASSWORD)
+#            s.send_message(msg)
+#
+#    except Exception as ex:
+#        print("Could not send email, reverting...")
+#        print(ex)
+#        try:
+#            db["lagfest-signups-fuksit"].delete_one({"_id": result.inserted_id})
+#        except Exception as ex:
+#            print(f'Could not revert signup for {signup["name"]}')
+#            print(ex)
+#        return jsonify({"message": "Sisäinen virhe", "retry": "true"}), 400
 
     return jsonify({"message": "Kiitos ilmoittautumisestasi!"})
 
 
-@app.route("/lagfest-signup", methods=["POST"])
+@flask_app.post("/lagfest-signup")
 def lagfest_signup():
     now = datetime.now(tz=TZ)
     if now < signup_start:
@@ -298,38 +328,38 @@ def lagfest_signup():
 
     result = db["lagfest-signups"].insert_one(signup)
 
-    try:
-        msg = EmailMessage()
-        msg.set_content(
-            "\n".join(
-                f"{str(key)}: {str(value)}"
-                for key, value in signup.items()
-                if key != "_id"
-            )
-        )
-        msg["Subject"] = f'Lagfest ilmo: {signup["name"]}'
-        msg["From"] = f"lagfest-ilmot@ruut.me"
-        msg["To"] = "ruut.mem@gmail.com"
-        # msg['To'] = 'juho.heiskanen@gmail.com'
-
-        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as s:
-            s.login(SMTP_USER, SMTP_PASSWORD)
-            s.send_message(msg)
-
-    except Exception as ex:
-        print("Could not send email, reverting...")
-        print(ex)
-        try:
-            db["lagfest-signups"].delete_one({"_id": result.inserted_id})
-        except Exception as ex:
-            print(f'Could not revert signup for {signup["name"]}')
-            print(ex)
-        return jsonify({"message": "Sisäinen virhe", "retry": "true"}), 400
+#    try:
+#        msg = EmailMessage()
+#        msg.set_content(
+#            "\n".join(
+#                f"{str(key)}: {str(value)}"
+#                for key, value in signup.items()
+#                if key != "_id"
+#            )
+#        )
+#        msg["Subject"] = f'Lagfest ilmo: {signup["name"]}'
+#        msg["From"] = f"lagfest-ilmot@ruut.me"
+#        msg["To"] = "ruut.mem@gmail.com"
+#        # msg['To'] = 'juho.heiskanen@gmail.com'
+#
+#        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as s:
+#            s.login(SMTP_USER, SMTP_PASSWORD)
+#            s.send_message(msg)
+#
+#    except Exception as ex:
+#        print("Could not send email, reverting...")
+#        print(ex)
+#        try:
+#            db["lagfest-signups"].delete_one({"_id": result.inserted_id})
+#        except Exception as ex:
+#            print(f'Could not revert signup for {signup["name"]}')
+#            print(ex)
+#        return jsonify({"message": "Sisäinen virhe", "retry": "true"}), 400
 
     return jsonify({"message": "Kiitos ilmoittautumisestasi!"})
 
 
-@app.route("/signups", methods=["GET"])
+@flask_app.get("/signups")
 def get_lagfest_signups():
     signups = list(
         db["lagfest-signups"]
@@ -340,7 +370,7 @@ def get_lagfest_signups():
     return jsonify(signups)
 
 
-@app.route("/signups-fuksit", methods=["GET"])
+@flask_app.get("/signups-fuksit")
 def get_lagfest_signups_fuksit():
     signups = list(
         db["lagfest-signups-fuksit"]
@@ -350,7 +380,10 @@ def get_lagfest_signups_fuksit():
 
     return jsonify(signups)
 
+app = func.WsgiFunctionApp(app=flask_app.wsgi_app, 
+                           http_auth_level=func.AuthLevel.ANONYMOUS) 
 
-if __name__ == "__main__":
-    print("Starting API server")
-    app.run(host="0.0.0.0", port=int(PORT))
+#if __name__ == "__main__":
+#    print("Starting API server")
+#    app.run(host="0.0.0.0", port=int(PORT))
+#

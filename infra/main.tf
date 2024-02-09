@@ -33,3 +33,27 @@ module "storage_react" {
   resource_group_name = azurerm_resource_group.rg.name
 
 }
+
+# ------------------------------------------------------------------------------------------------------
+# Cosmos db
+# ------------------------------------------------------------------------------------------------------
+
+module "cosmos" {
+  source = "./modules/cosmos"
+
+  resource_group_name = azurecaf_name.rg_name
+  location            = azurerm_resource_group.rg.location
+
+}
+
+# ------------------------------------------------------------------------------------------------------
+# Function app
+# ------------------------------------------------------------------------------------------------------
+
+module "function" {
+  source = "./modules/functions"
+
+  resource_group_name = azurecaf_name.rg_name
+  location            = azurerm_resource_group.rg.location
+
+}
