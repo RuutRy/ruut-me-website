@@ -16,7 +16,7 @@ resource "azurerm_service_plan" "backend" {
 
 data "archive_file" "python_function_package" {  
   type = "zip"  
-  source_file = "../../../api/src/app.py" 
+  source_file = "${path.module}/../../../api/src/app.py" 
   output_path = "function.zip"
 }
 
@@ -29,7 +29,7 @@ resource "azurerm_linux_function_app" "backend" {
   storage_account_access_key = azurerm_storage_account.backend.primary_access_key
   service_plan_id            = azurerm_service_plan.backend.id
 
-  zip_deploy_file = data.archive_file.python_function_package
+  zip_deploy_file = data.archive_file.python_function_package.output_path
 
   site_config {
     application_stack {
