@@ -41,8 +41,8 @@ module "storage_react" {
 module "cosmos" {
   source = "./modules/cosmos"
 
-  resource_group_name = azurecaf_name.rg_name
-  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurecaf_name.rg_name.name
+  location            = var.location
 
 }
 
@@ -53,7 +53,7 @@ module "cosmos" {
 module "function" {
   source = "./modules/functions"
 
-  resource_group_name = azurecaf_name.rg_name
-  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurecaf_name.rg_name.name
+  location            = var.location
 
 }
