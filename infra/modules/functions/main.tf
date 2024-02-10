@@ -17,7 +17,7 @@ resource "azurerm_service_plan" "backend" {
 data "archive_file" "python_function_package" {  
   type = "zip"  
   source_file = "${path.module}/../../../api/src/app.py" 
-  output_path = "function.zip"
+  output_path = "${path.module}/function.zip"
 }
 
 resource "azurerm_linux_function_app" "backend" {
