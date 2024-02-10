@@ -51,14 +51,3 @@ resource "azurerm_cosmosdb_mongo_collection" "lagfest" {
 
 }
 
-resource "azurerm_cosmosdb_mongo_collection" "tatiseta" {
-  name                = "ruut-tatiseta"
-  resource_group_name = var.resource_group_name
-  account_name        = azurerm_cosmosdb_account.db.name
-  database_name       = azurerm_cosmosdb_mongo_database.main.name
-
-  default_ttl_seconds = "777"
-  shard_key           = "uniqueKey"
-  throughput          = 400
-
-}
