@@ -51,7 +51,6 @@ resource "azurerm_cosmosdb_mongo_collection" "lagfest" {
 
   index {
     keys   = ["_id"]
-    unique = true
   }
 }
 
