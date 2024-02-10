@@ -49,5 +49,9 @@ resource "azurerm_cosmosdb_mongo_collection" "lagfest" {
   shard_key           = "uniqueKey"
   throughput          = 400
 
+  index {
+    keys   = ["_id"]
+    unique = true
+  }
 }
 

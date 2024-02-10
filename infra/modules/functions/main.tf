@@ -14,6 +14,12 @@ resource "azurerm_service_plan" "backend" {
   sku_name            = "Y1"
 }
 
+data "archive_file" "python_function_package" {  
+  type = "zip"  
+  source_file = "${path.module}/../../../api/src/app.py" 
+  output_path = "${path.module}/function.zip"
+}
+
 resource "azurerm_linux_function_app" "backend" {
   name                = "ruut-backend-function-app"
   resource_group_name = var.resource_group_name
@@ -23,5 +29,11 @@ resource "azurerm_linux_function_app" "backend" {
   storage_account_access_key = azurerm_storage_account.backend.primary_access_key
   service_plan_id            = azurerm_service_plan.backend.id
 
-  site_config {}
+  zip_deploy_file = data.archive_file.python_function_package.output_path
+
+  site_config {
+    application_stack {
+        python_version = "3.10"
+    }
+  }
 }
