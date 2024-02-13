@@ -14,11 +14,11 @@ resource "azurerm_service_plan" "backend" {
   sku_name            = "Y1"
 }
 
-data "archive_file" "python_function_package" {  
-  type = "zip"  
-  source_file = "${path.module}/../../../api/src/app.py" 
-  output_path = "${path.module}/function.zip"
-}
+# data "archive_file" "python_function_package" {  
+#   type = "zip"  
+#   source_file = "${path.module}/../../../api/src/app.py" 
+#   output_path = "${path.module}/function.zip"
+# }
 
 resource "azurerm_linux_function_app" "backend" {
   name                = "ruut-backend-function-app"
@@ -29,7 +29,8 @@ resource "azurerm_linux_function_app" "backend" {
   storage_account_access_key = azurerm_storage_account.backend.primary_access_key
   service_plan_id            = azurerm_service_plan.backend.id
 
-  zip_deploy_file = data.archive_file.python_function_package.output_path
+  # zip_deploy_file = data.archive_file.python_function_package.output_path
+
   connection_string {
     name = "COSMOS_CONNECTION_STRING"
     type = "PostgreSQL"
@@ -40,4 +41,35 @@ resource "azurerm_linux_function_app" "backend" {
         python_version = "3.10"
     }
   }
+}
+
+resource "azurerm_function_app_function" "lagfest_signups" {
+  name            = "lagfest-signups-function"
+  function_app_id = azurerm_linux_function_app.backend.id
+  language        = "Python"
+
+  file {
+    name    = "lagfest_signups"
+    content = file("${path.module}/../../../api/lagfest_signups.py")
+  }
+
+  config_json = jsonencode({
+    "bindings" = [
+      {
+        "authLevel" = "function"
+        "direction" = "in"
+        "methods" = [
+          "get",
+          "post",
+        ]
+        "name" = "req"
+        "type" = "httpTrigger"
+      },
+      {
+        "direction" = "out"
+        "name"      = "$return"
+        "type"      = "http"
+      },
+    ]
+  })
 }
