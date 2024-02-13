@@ -31,7 +31,7 @@ resource "azurerm_linux_function_app" "backend" {
 
   zip_deploy_file = data.archive_file.python_function_package.output_path
   connection_string {
-    name = "db"
+    name = "COSMOS_CONNECTION_STRING"
     type = "PostgreSQL"
     value = var.connection_string
   }
