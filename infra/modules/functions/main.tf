@@ -30,7 +30,11 @@ resource "azurerm_linux_function_app" "backend" {
   service_plan_id            = azurerm_service_plan.backend.id
 
   zip_deploy_file = data.archive_file.python_function_package.output_path
-
+  connection_string {
+    name = "db"
+    type = "PostgreSQL"
+    value = var.connection_string
+  }
   site_config {
     application_stack {
         python_version = "3.10"
