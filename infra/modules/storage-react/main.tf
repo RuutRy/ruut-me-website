@@ -14,6 +14,7 @@ resource "azurerm_storage_account" "react-storage-account" {
 
   static_website {
     index_document = var.index_path
+    error_404_document = var.index_path
   }
 
   blob_properties {
