@@ -7,10 +7,10 @@ class Contacts extends Component {
         <h2 className="title">Yhteystiedot</h2>
         <div>
           <h3>Puheenjohtaja</h3>
-          <p>Eetu Asikainen</p>
+          <p>Miko Mattila</p>
           <p>
-            <a href="mailto:eetu.asikainen@student.lut.fi">
-              eetu.asikainen@student.lut.fi
+            <a href="mailto:Miko.Mattila@student.lut.fi">
+              Miko.Mattila@student.lut.fi
             </a>
           </p>
           <h3>Varapuheenjohtaja</h3>
