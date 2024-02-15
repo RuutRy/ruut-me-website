@@ -33,6 +33,11 @@ resource "azurerm_linux_function_app" "backend" {
     application_stack {
       python_version = "3.10"
     }
+    cors {
+      allowed_origins = [ # For easier testing
+        "https://portal.azure.com"
+      ]
+    }
   }
 }
 
