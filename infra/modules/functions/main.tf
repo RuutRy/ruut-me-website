@@ -50,12 +50,17 @@ resource "azurerm_function_app_function" "lagfest_signups" {
 
   file {
     name    = "function_app"
-    content = file("${path.module}/../../../api/lagfest_signup.py")
+    content = file("${path.module}/../../../api/lagfest-signup/function_app.py")
   }
 
   file {
     name    = "requirements"
-    content = file("${path.module}/../../../api/requirements.txt")
+    content = file("${path.module}/../../../api/lagfest-signup/requirements.txt")
+  }
+
+  file {
+    name    = "requirements"
+    content = file("${path.module}/../../../api/lagfest-signup/host.json")
   }
 
   config_json = jsonencode({
@@ -66,9 +71,9 @@ resource "azurerm_function_app_function" "lagfest_signups" {
         "methods" = [
           "post"
         ]
-        "name"  = "lagfest-signup"
+        "name"  = "req"
         "type"  = "httpTrigger"
-        "route" = "lagfest-signup"
+        "route" = "lagfestSignup"
       },
       {
         "direction" = "out"
