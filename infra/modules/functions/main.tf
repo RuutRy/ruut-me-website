@@ -50,7 +50,7 @@ resource "azurerm_function_app_function" "lagfest_signups" {
 
   file {
     name    = "function_app"
-    content = file("${path.module}/../../../api/function_app.py")
+    content = file("${path.module}/../../../api/lagfest_signup.py")
   }
 
   file {
@@ -64,11 +64,11 @@ resource "azurerm_function_app_function" "lagfest_signups" {
         "authLevel" = "anonymous"
         "direction" = "in"
         "methods" = [
-          "get",
-          "post",
+          "post"
         ]
-        "name" = "req"
-        "type" = "httpTrigger"
+        "name"  = "lagfest-signup"
+        "type"  = "httpTrigger"
+        "route" = "lagfest-signup"
       },
       {
         "direction" = "out"
