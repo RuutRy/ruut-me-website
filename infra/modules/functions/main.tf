@@ -36,6 +36,7 @@ resource "azurerm_linux_function_app" "backend" {
   }
 }
 
+/*
 resource "azurerm_function_app_function" "lagfest_signups" {
   name            = "lagfest-signups-function"
   function_app_id = azurerm_linux_function_app.backend.id
@@ -76,3 +77,4 @@ resource "azurerm_function_app_function" "lagfest_signups" {
     ]
   })
 }
+*/
