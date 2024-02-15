@@ -32,13 +32,13 @@ resource "azurerm_linux_function_app" "backend" {
   # zip_deploy_file = data.archive_file.python_function_package.output_path
 
   connection_string {
-    name = "COSMOS_CONNECTION_STRING"
-    type = "PostgreSQL"
+    name  = "COSMOS_CONNECTION_STRING"
+    type  = "PostgreSQL"
     value = var.connection_string
   }
   site_config {
     application_stack {
-        python_version = "3.10"
+      python_version = "3.10"
     }
   }
 }
@@ -49,14 +49,19 @@ resource "azurerm_function_app_function" "lagfest_signups" {
   language        = "Python"
 
   file {
-    name    = "lagfest_signups"
-    content = file("${path.module}/../../../api/lagfest_signups.py")
+    name    = "function_app"
+    content = file("${path.module}/../../../api/function_app.py")
+  }
+
+  file {
+    name    = "requirements"
+    content = file("${path.module}/../../../api/requirements.txt")
   }
 
   config_json = jsonencode({
     "bindings" = [
       {
-        "authLevel" = "function"
+        "authLevel" = "anonymous"
         "direction" = "in"
         "methods" = [
           "get",
