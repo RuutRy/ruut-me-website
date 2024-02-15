@@ -113,4 +113,18 @@ def lagfestSignup(req: func.HttpRequest, outputDocument: func.Out[func.Document]
     logging.info(f"Successful submission for {data.get('name')}.")
     message = json.dumps({"message": "Kiitos ilmoittautumisestasi!"})
     return func.HttpResponse(body=message,
-                             status_code=400)
+                             status_code=200)
+
+
+@app.function_name(name="lagfest")
+@app.route(route="lagfest", auth_level=func.AuthLevel.ANONYMOUS, methods=["GET"])
+@app.cosmos_db_input(arg_name="documents",
+                     database_name="main",
+                     container_name="ruut-lagfest",
+                     sql_query="SELECT * FROM c",
+                     connection="COSMOS_CONNECTION_STRING")
+def lagfest(req: func.HttpRequest, documents: func.DocumentList) -> func.HttpResponse:
+    logging.info(f"{documents}")
+    message = json.dumps({"message": "Kiitos ilmoittautumisestasi!"})
+    return func.HttpResponse(body=message,
+                             status_code=200)
