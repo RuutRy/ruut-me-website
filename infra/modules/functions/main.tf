@@ -60,7 +60,7 @@ resource "azurerm_function_app_function" "lagfest_signups" {
 
   file {
     name    = "requirements"
-    content = file("${path.module}/../../../api/lagfest-signup/hosts.json")
+    content = file("${path.module}/../../../api/lagfest-signup/host.json")
   }
 
   config_json = jsonencode({
