@@ -49,17 +49,17 @@ resource "azurerm_function_app_function" "lagfest_signups" {
   language        = "Python"
 
   file {
-    name    = "function_app"
+    name    = "function_app.py"
     content = file("${path.module}/../../../api/lagfest-signup/function_app.py")
   }
 
   file {
-    name    = "requirements"
+    name    = "requirements.txt"
     content = file("${path.module}/../../../api/lagfest-signup/requirements.txt")
   }
 
   file {
-    name    = "requirements"
+    name    = "host.json"
     content = file("${path.module}/../../../api/lagfest-signup/host.json")
   }
 
