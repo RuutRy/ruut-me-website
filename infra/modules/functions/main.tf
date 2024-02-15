@@ -26,7 +26,7 @@ resource "azurerm_linux_function_app" "backend" {
 
   connection_string {
     name  = "COSMOS_CONNECTION_STRING"
-    type  = "PostgreSQL"
+    type  = "SQLServer"
     value = var.connection_string
   }
   site_config {
