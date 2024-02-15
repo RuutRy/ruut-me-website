@@ -36,26 +36,11 @@ resource "azurerm_linux_function_app" "backend" {
   }
 }
 
-/*
+
 resource "azurerm_function_app_function" "lagfest_signups" {
-  name            = "lagfest-signups-function"
+  name            = "lagfestSignup"
   function_app_id = azurerm_linux_function_app.backend.id
   language        = "Python"
-
-  file {
-    name    = "function_app.py"
-    content = file("${path.module}/../../../api/lagfest-signup/function_app.py")
-  }
-
-  file {
-    name    = "requirements.txt"
-    content = file("${path.module}/../../../api/lagfest-signup/requirements.txt")
-  }
-
-  file {
-    name    = "host.json"
-    content = file("${path.module}/../../../api/lagfest-signup/host.json")
-  }
 
   config_json = jsonencode({
     "bindings" = [
@@ -65,9 +50,8 @@ resource "azurerm_function_app_function" "lagfest_signups" {
         "methods" = [
           "post"
         ]
-        "name"  = "req"
-        "type"  = "httpTrigger"
-        "route" = "lagfestSignup"
+        "name" = "req"
+        "type" = "httpTrigger"
       },
       {
         "direction" = "out"
@@ -77,4 +61,4 @@ resource "azurerm_function_app_function" "lagfest_signups" {
     ]
   })
 }
-*/
+
