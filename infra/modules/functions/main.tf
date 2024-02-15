@@ -36,29 +36,3 @@ resource "azurerm_linux_function_app" "backend" {
   }
 }
 
-
-resource "azurerm_function_app_function" "lagfest_signups" {
-  name            = "lagfestSignup"
-  function_app_id = azurerm_linux_function_app.backend.id
-  language        = "Python"
-
-  config_json = jsonencode({
-    "bindings" = [
-      {
-        "authLevel" = "anonymous"
-        "direction" = "in"
-        "methods" = [
-          "post"
-        ]
-        "name" = "req"
-        "type" = "httpTrigger"
-      },
-      {
-        "direction" = "out"
-        "name"      = "$return"
-        "type"      = "http"
-      },
-    ]
-  })
-}
-
