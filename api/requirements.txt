@@ -1,5 +1,2 @@
-flask == 2.2.5
-pymongo
-flask_cors
-pytz
-dotenv
+azure_storage==0.37.0
+pytz==2023.3.post1
