@@ -8,8 +8,10 @@ import "./nes.css.fixes.css";
 
 import "./LagfestInfo.css";
 
-const formUrl = "https://ruut.me/api/lagfest-signup";
-const signupsUrl = "https://ruut.me/api/signups";
+const formUrl =
+  "https://ruut-backend-function-app.azurewebsites.net/api/lagfestSignup";
+const signupsUrl =
+  "https://ruut-backend-function-app.azurewebsites.net/api/lagfest";
 
 const signupMax = 80;
 
@@ -48,9 +50,9 @@ class LagfestInfo extends Component {
   constructor(props) {
     super(props);
 
-    this.targetRegistration = new Date(2023, 1, 9, 16);
-    this.targetStart = new Date(2023, 2, 23, 16);
-    this.targetEnd = new Date(2023, 2, 26, 12);
+    this.targetRegistration = new Date(2024, 1, 22, 16);
+    this.targetStart = new Date(2023, 2, 21, 16);
+    this.targetEnd = new Date(2023, 2, 24, 12);
 
     this.state = {
       dateString: this.getDateString(new Date(), this.targetStart),
@@ -129,7 +131,7 @@ class LagfestInfo extends Component {
             retry: true,
           });
         }
-      },
+      }
     );
   }
 

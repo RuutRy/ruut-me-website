@@ -11,7 +11,7 @@ func.HttpResponse.mimetype = 'application/json'
 func.HttpResponse.charset = 'utf-8'
 
 TZ = pytz.timezone("Europe/Helsinki")
-signup_start = TZ.localize(datetime(2024, 2, 15, 11))
+signup_start = TZ.localize(datetime(2024, 2, 22, 16))
 
 
 @app.function_name(name="lagfestSignup")
@@ -91,7 +91,7 @@ def lagfestSignup(req: func.HttpRequest, outputDocument: func.Out[func.Document]
                                  status_code=400)
 
     if not re.match(r"^.*@student.l(ut|ab).fi$", data["email"], flags=re.I):
-        if now < signup_start + timedelta(hours=1):
+        if now < signup_start + timedelta(hours=2):
             logging.info('Returned 400 for too early for non student')
             message = json.dumps(
                 {"message": 'Voit ilmoittautua vasta tuntia myohemmin, jos sähkopostisi ei ole muotoa "@student.lut.fi" tai "@student.lab.fi".', "retry": True})
