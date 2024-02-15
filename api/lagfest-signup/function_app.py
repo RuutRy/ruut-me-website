@@ -3,6 +3,7 @@ import logging
 import pytz
 import json
 import re
+import uuid
 from datetime import datetime, timedelta
 
 app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
@@ -13,8 +14,11 @@ TZ = pytz.timezone("Europe/Helsinki")
 signup_start = TZ.localize(datetime(2024, 2, 15, 11))
 
 
-@app.route(route="lagfestSignup")
-def lagfestSignup(req: func.HttpRequest) -> func.HttpResponse:
+@app.function_name(name="lagfestSignup")
+@app.route(route="lagfestSignup", auth_level=func.AuthLevel.ANONYMOUS, methods=["POST"])
+@app.cosmos_db_output(arg_name="outputDocument", database_name="main",
+                      container_name="ruut-lagfest", connection="COSMOS_CONNECTION_STRING")
+def lagfestSignup(req: func.HttpRequest, outputDocument: func.Out[func.Document]) -> func.HttpResponse:
     now = datetime.now(tz=TZ)
     logging.info(
         f'Python HTTP trigger function processed a request. Time is {now}')
@@ -55,6 +59,13 @@ def lagfestSignup(req: func.HttpRequest) -> func.HttpResponse:
         for (field, type) in form_fields
     ]
 
+    if any(s):
+        logging.warning("Invalid data")
+        message = json.dumps(
+            {"message": "Puutteellinen tai muuten virheellinen lomake.", "retry": True})
+        return func.HttpResponse(body=message,
+                                 status_code=400)
+
     try:
         data["gdpr"]
     except:
@@ -93,7 +104,11 @@ def lagfestSignup(req: func.HttpRequest) -> func.HttpResponse:
         if field in data:
             signup[field] = data[field]
 
-    signup["time"] = datetime.now(tz=TZ)
+    signup["time"] = datetime.now(tz=TZ).isoformat()
+    signup["id"] = uuid.uuid4().hex
+    logging.info(f"{signup}")
+
+    outputDocument.set(func.Document.from_dict(signup))
 
     logging.info(f"Successful submission for {data.get('name')}.")
     message = json.dumps({"message": "Kiitos ilmoittautumisestasi!"})
