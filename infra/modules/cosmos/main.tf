@@ -8,16 +8,12 @@ resource "azurerm_cosmosdb_account" "db" {
   location            = var.location
   resource_group_name = var.resource_group_name
   offer_type          = "Standard"
-  kind                = "MongoDB"
+  kind                = "GlobalDocumentDB"
 
-  enable_automatic_failover = true
-
-  capabilities {
-    name = "MongoDBv3.4"
-  }
+  enable_automatic_failover = false
 
   capabilities {
-    name = "EnableMongo"
+    name = "EnableServerless"
   }
 
   consistency_policy {
@@ -32,25 +28,18 @@ resource "azurerm_cosmosdb_account" "db" {
   }
 }
 
-resource "azurerm_cosmosdb_mongo_database" "main" {
+resource "azurerm_cosmosdb_sql_database" "main" {
   name                = "main"
   resource_group_name = var.resource_group_name
   account_name        = azurerm_cosmosdb_account.db.name
-  throughput          = 400
 }
 
-resource "azurerm_cosmosdb_mongo_collection" "lagfest" {
+resource "azurerm_cosmosdb_sql_container" "lagfest" {
   name                = "ruut-lagfest"
   resource_group_name = var.resource_group_name
   account_name        = azurerm_cosmosdb_account.db.name
-  database_name       = azurerm_cosmosdb_mongo_database.main.name
+  database_name       = azurerm_cosmosdb_sql_database.main.name
+  partition_key_path  = "/definition/id"
 
-  default_ttl_seconds = "777"
-  shard_key           = "uniqueKey"
-  throughput          = 400
-
-  index {
-    keys   = ["_id"]
-  }
 }
 
