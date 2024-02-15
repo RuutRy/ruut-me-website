@@ -121,10 +121,16 @@ def lagfestSignup(req: func.HttpRequest, outputDocument: func.Out[func.Document]
 @app.cosmos_db_input(arg_name="documents",
                      database_name="main",
                      container_name="ruut-lagfest",
-                     sql_query="SELECT * FROM c",
+                     sql_query="SELECT * FROM c ORDER BY c.time ASC",
                      connection="COSMOS_CONNECTION_STRING")
 def lagfest(req: func.HttpRequest, documents: func.DocumentList) -> func.HttpResponse:
-    logging.info(f"{documents}")
-    message = json.dumps({"message": "Kiitos ilmoittautumisestasi!"})
+    logging.info(f"Something {documents}")
+    participants = []
+    for doc in documents:
+        participant = {"name": doc.get("name"), "yell": doc.get(
+            "yell")}
+        participants.append(participant)
+    logging.info(f"result of {participants}")
+    message = json.dumps(participants)
     return func.HttpResponse(body=message,
                              status_code=200)
