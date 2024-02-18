@@ -50,7 +50,7 @@ class LagfestInfo extends Component {
   constructor(props) {
     super(props);
 
-    this.targetRegistration = new Date(2024, 1, 22, 16);
+    this.targetRegistration = new Date(2024, 1, 18, 12);
     this.targetStart = new Date(2024, 2, 21, 16);
     this.targetEnd = new Date(2024, 2, 24, 12);
 
