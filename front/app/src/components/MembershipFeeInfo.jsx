@@ -12,9 +12,9 @@ class MembershipFeeInfo extends Component {
             <li>Alumnijäsenelle 0€</li>
           </ul>
           <p>Jäsenmaksu maksetaan yhdistyksen holvi verkkokaupaan:</p>
-          <pre>
-            https://holvi.com/shop/lagfest/product/6f1aa3eb35858778c3821ef7ac084249/
-          </pre>
+          <a href="https://holvi.com/shop/lagfest/product/6f1aa3eb35858778c3821ef7ac084249/">
+            Linkki holvin verkkokaupaan
+          </a>
         </div>
       </section>
     );
