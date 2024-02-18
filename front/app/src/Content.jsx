@@ -8,7 +8,6 @@ import "./Content.css";
 
 const AsyncGeneral = asyncComponent(() => import("./components/General.jsx"));
 const AsyncContacts = asyncComponent(() => import("./components/Contacts.jsx"));
-const AsyncJoinForm = asyncComponent(() => import("./components/JoinForm.jsx"));
 const AsyncMembershipFeeInfo = asyncComponent(() =>
   import("./components/MembershipFeeInfo.jsx")
 );
