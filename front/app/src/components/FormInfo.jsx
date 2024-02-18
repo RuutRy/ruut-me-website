@@ -33,7 +33,7 @@ class FormInfo extends Component {
           kirjallisesti yhdistyksen puheenjohtajalle taikka rahastonhoitajalle.
           Opintojen päättyessä Aktiivijäsenten on mahdollista muuttaa
           jäsenyytensä Vanhaksi jäsenyydeksi. Yhdistyksen jäsenmaksu kaudelle
-          2023 on 0€, tulevien kausien jäsenmaksuista sovitaan yhdistyksen
+          2024 on 0€, tulevien kausien jäsenmaksuista sovitaan yhdistyksen
           syyskokouksissa.
         </p>
         <p className="long-text">

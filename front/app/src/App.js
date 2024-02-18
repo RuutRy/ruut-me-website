@@ -48,7 +48,7 @@ class App extends Component {
                 <i className="nes-icon facebook is-small" /> Ruut
               </a>
             </p>
-            <p>(c) Ruut ry 2023</p>
+            <p>(c) Ruut ry 2024</p>
           </footer>
         </div>
       </Router>

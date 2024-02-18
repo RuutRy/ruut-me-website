@@ -256,7 +256,7 @@ class LagfestInfo extends Component {
           {
             key: "active",
             name:
-              "Ruutin jäsen (Ruut ry:n jäsen + jäsenmaksu maksettu vuodelle 2023) 10€ ",
+              "Ruutin jäsen (Ruut ry:n jäsen + jäsenmaksu maksettu vuodelle 2024) 10€ ",
           },
           { key: "other", name: "Muu LTKY:n/KOE:n opiskelija 15€" },
         ],
@@ -392,7 +392,7 @@ class LagfestInfo extends Component {
             <h2 className="title">Lippujen hinnat</h2>
             <p>Järjestäjät 0€</p>
             <p>
-              Ruutin jäsen (Ruut ry:n jäsen + jäsenmaksu maksettu vuodelle 2023)
+              Ruutin jäsen (Ruut ry:n jäsen + jäsenmaksu maksettu vuodelle 2024)
               10€
             </p>
             <p>Muu LTKY:n/KOE:n opiskelija 15€</p>
