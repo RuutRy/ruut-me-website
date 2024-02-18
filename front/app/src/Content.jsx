@@ -25,7 +25,6 @@ class Content extends Component {
       <Switch>
         <Route path="/" exact component={AsyncGeneral} />
         <Route path="/yhteystiedot" component={AsyncContacts} />
-        <Route path="/liittyminen" component={AsyncJoinForm} />
         <Route path="/jäsenmaksu" component={AsyncMembershipFeeInfo} />
         <Route path="/lagfest" component={AsyncLagfestInfo} />
         <Route path="/lagfest-fuksit" component={AsyncFuksiLagfestInfo} />
