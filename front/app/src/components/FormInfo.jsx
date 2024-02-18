@@ -57,6 +57,11 @@ class FormInfo extends Component {
           kirjallisesti, jotta kunniajäsenyyksiä voidaan käsitellä yhdistyksen
           hallituksen kokouksessa.
         </p>
+        <p className="long-text">
+          Vuoden 2024 jäseneksi liityttään holvin verkkokaupan kautta
+          osoitteesta:
+          https://holvi.com/shop/lagfest/product/6f1aa3eb35858778c3821ef7ac084249/
+        </p>
       </>
     );
   }
