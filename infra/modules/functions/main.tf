@@ -36,8 +36,8 @@ resource "azurerm_linux_function_app" "backend" {
     cors {
       allowed_origins = [ # For easier testing
         "https://portal.azure.com",
-        "test.ruut.me",
-        "ruut.me"
+        "https://test.ruut.me",
+        "https://ruut.me"
       ]
     }
   }
