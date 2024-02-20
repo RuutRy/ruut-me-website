@@ -9,10 +9,10 @@ class MembershipFeeInfo extends Component {
           <p>Ruut&apos;n jäsenmaksu vuodelle 2024 on</p>
           <ul className="nes-list is-disc">
             <li>Aktiivijäsenelle 5€</li>
-            <li>Alumnijäsenelle 0€</li>
+            <li>Kannatusjäsenelle 25€</li>
           </ul>
           <p>Jäsenmaksu maksetaan yhdistyksen holvi verkkokaupaan:</p>
-          <a href="https://holvi.com/shop/lagfest/product/6f1aa3eb35858778c3821ef7ac084249/">
+          <a href="https://holvi.com/shop/lagfest/">
             Linkki holvin verkkokaupaan
           </a>
         </div>

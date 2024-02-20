@@ -8,10 +8,10 @@ import "./nes.css.fixes.css";
 
 import "./LagfestInfo.css";
 
-const formUrl =
-  "https://ruut-backend-function-app.azurewebsites.net/api/lagfestSignup";
-const signupsUrl =
-  "https://ruut-backend-function-app.azurewebsites.net/api/lagfest";
+//Todo update this page to actually work
+
+const formUrl = "https://ruut.me/api/lagfest-signup-fuksit";
+const signupsUrl = "https://ruut.me/api/signups-fuksit";
 
 const signupMax = 80;
 
@@ -50,9 +50,9 @@ class LagfestInfo extends Component {
   constructor(props) {
     super(props);
 
-    this.targetRegistration = new Date(2024, 1, 22, 16);
-    this.targetStart = new Date(2024, 2, 21, 16);
-    this.targetEnd = new Date(2024, 2, 24, 12);
+    this.targetRegistration = new Date(2023, 1, 9, 16);
+    this.targetStart = new Date(2023, 2, 3, 16);
+    this.targetEnd = new Date(2023, 2, 5, 12);
 
     this.state = {
       dateString: this.getDateString(new Date(), this.targetStart),
@@ -66,6 +66,7 @@ class LagfestInfo extends Component {
       yell: null,
       ticket: null,
       gdpr: null,
+      fuksi: null,
 
       stage: "form",
     };
@@ -103,8 +104,8 @@ class LagfestInfo extends Component {
       },
       async () => {
         try {
-          const { name, email, yell, ticket, gdpr } = this.state;
-          const data = { name, email, yell, ticket, gdpr };
+          const { name, email, yell, ticket, gdpr, fuksi } = this.state;
+          const data = { name, email, yell, ticket, gdpr, fuksi };
           const res = await window.fetch(formUrl, {
             method: "POST",
             cors: "cors",
@@ -255,11 +256,16 @@ class LagfestInfo extends Component {
           { key: "organizer", name: "Järjestäjät 0€" },
           {
             key: "active",
-            name:
-              "Ruutin jäsen (Ruut ry:n jäsen + jäsenmaksu maksettu vuodelle 2024) 10€ ",
+            name: "Ruutin jäsen (Ruut ry:n jäsen + jäsenmaksu maksettu vuodelle 2023) 10€ ",
           },
           { key: "other", name: "Muu LTKY:n/KOE:n opiskelija 15€" },
         ],
+      },
+      {
+        key: "fuksi",
+        title: "Olen fuksi/tupsu",
+        type: "flag",
+        required: false,
       },
       {
         key: "gdpr",
@@ -364,7 +370,7 @@ class LagfestInfo extends Component {
     return (
       <>
         <section className="nes-container with-title">
-          <h2 className="title">Lagfest</h2>
+          <h2 className="title">Tutustumislanit</h2>
           <div>
             <p>{over ? "Lanit jatkuvat taas syssymmällä" : dateString}</p>
           </div>
@@ -392,7 +398,7 @@ class LagfestInfo extends Component {
             <h2 className="title">Lippujen hinnat</h2>
             <p>Järjestäjät 0€</p>
             <p>
-              Ruutin jäsen (Ruut ry:n jäsen + jäsenmaksu maksettu vuodelle 2024)
+              Ruutin jäsen (Ruut ry:n jäsen + jäsenmaksu maksettu vuodelle 2023)
               10€
             </p>
             <p>Muu LTKY:n/KOE:n opiskelija 15€</p>
@@ -403,8 +409,8 @@ class LagfestInfo extends Component {
           <section className="nes-container with-title">
             <h2 className="title">HUOM!</h2>
             <p>
-              Voit ilmoittautua vasta kaksi(2) tuntia myöhemmin, jos sähköpostisi ei ole
-              muotoa "@student.lut.fi" tai "@student.lab.fi".
+              Voit ilmoittautua vasta 48 tuntia myöhemmin, jos sähköpostisi
+              ei ole muotoa "@student.lut.fi" tai "@student.lab.fi".
             </p>
           </section>
         )}
@@ -450,7 +456,7 @@ class LagfestInfo extends Component {
         {!over && signups.length > 0 && showForm && (
           <section className="nes-container with-title">
             <h2 className="title">
-              Ilmoittautumiset ({signups.length}/{signupMax})
+              Fuksilani-ilmoittautumiset ({signups.length}/{signupMax})
             </h2>
             {signupEls}
           </section>

@@ -14,38 +14,38 @@ class Contacts extends Component {
             </a>
           </p>
           <h3>Varapuheenjohtaja</h3>
-          <p>Miko Mattila</p>
+          <p>Noora Parkko</p>
           <p>
-            <a href="mailto:miko.mattila@student.lut.fi">
-              miko.mattila@student.lut.fi
+            <a href="mailto:noora.parkko@student.lut.fi">
+              noora.parkko@student.lut.fi
             </a>
           </p>
           <h3>Rahastonhoitaja</h3>
-          <p>Niklas Hjelm</p>
+          <p>Tuomas Mustakallio</p>
           <p>
-            <a href="mailto:niklas.hjelm@student.lut.fi">
-              niklas.hjelm@student.lut.fi
+            <a href="mailto:tuomas.mustakallio@student.lut.fi">
+              tuomas.mustakallio@student.lut.fi
             </a>
           </p>
           <h3>ATK-vastaava</h3>
-          <p>Elias Samuli</p>
+          <p>Konsta Keski-Mattinen</p>
           <p>
-            <a href="mailto:elias.samuli@student.lut.fi">
-              elias.samuli@student.lut.fi
+            <a href="mailto:konsta.keski-mattinen@student.lut.fi">
+              konsta.keski-mattinen@student.lut.fi
             </a>
           </p>
           <h3>Sihteeri</h3>
-          <p>Miika Pynttäri</p>
+          <p>leevi Laitala</p>
           <p>
-            <a href="mailto:miika.pynttari@student.lut.fi">
-              miika.pynttari@student.lut.fi
+            <a href="mailto:leevi.laitala@student.lut.fi">
+              leevi.laitala@student.lut.fi
             </a>
           </p>
           <h3>Hallituksen jäsen</h3>
-          <p>Elias Ryökäs</p>
+          <p>Jeremias Walhsten</p>
           <p>
-            <a href="mailto:elias.ryökäs@student.lut.fi">
-              elias.ryökäs@student.lut.fi
+            <a href="mailto:jeremias.walhsten@student.lut.fi">
+              jeremias.walhsten@student.lut.fi
             </a>
           </p>
         </div>

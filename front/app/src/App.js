@@ -7,6 +7,7 @@ import "nes.css/css/nes.css";
 
 import Content from "./Content.jsx";
 
+
 class App extends Component {
   render() {
     return (
@@ -26,6 +27,9 @@ class App extends Component {
             <Link to="/yhteystiedot">
               <button className="nes-btn">Yhteystiedot</button>
             </Link>
+            <Link to="/jäseneksi">
+              <button className="nes-btn">Jäseneksi</button>
+            </Link>
             <Link to="/jäsenmaksu">
               <button className="nes-btn">Jäsenmaksu</button>
             </Link>
@@ -35,14 +39,17 @@ class App extends Component {
             <Link to="/lagfest-fuksit">
               <button className="nes-btn">Tutustumislanit</button>
             </Link>
+            <Link to="/lagfest-setätäti">
+              <button className="nes-btn">Setätätilanit</button>
+            </Link>
           </nav>
 
           <Content />
 
           <footer className="footer">
             <p>
-              <a href="https://www.facebook.com/RuutRy/">
-                <i className="nes-icon facebook is-small" /> Ruut
+              <a href="/tietosuojaseloste.pdf">
+                Tietosuojaseloste
               </a>
             </p>
             <p>(c) Ruut ry 2024</p>
