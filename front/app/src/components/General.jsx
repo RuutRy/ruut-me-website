@@ -10,7 +10,7 @@ class General extends Component {
             Ruut ry on Lappeenrannan kampuksella toimiva yhdistys, jonka missio on yhdistää tietotekniikasta ja videopelaamisesta kiinnostuneita järjestäen videopeliteemaisia tapahtumia ympäri vuoden. 
           </p>
           <p>
-            Ruutin tunnetuimpia tapahtumia ovat Lagfest lanitapahtumat.
+            Ruut ry kuuluu LTKYn yhdistysluetteloon. Ruutin tunnetuimpia tapahtumia ovat Lagfest lanitapahtumat
           </p>
         </div>
       </section>

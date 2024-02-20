@@ -17,9 +17,6 @@ const AsyncMembershipFeeInfo = asyncComponent(() =>
 const AsyncLagfestInfo = asyncComponent(() =>
   import("./components/LagfestInfo.jsx")
 );
-const AsyncFuksiLagfestInfo = asyncComponent(() =>
-  import("./components/FuksiLagfestInfo.jsx")
-);
 
 const AsyncVanhusLagfestInfo = asyncComponent(() =>
   import("./components/VanhusLagfestInfo.jsx")
@@ -34,7 +31,6 @@ class Content extends Component {
         <Route path="/jäseneksi" component={AsyncMembershipJoinInfo} />
         <Route path="/jäsenmaksu" component={AsyncMembershipFeeInfo} />
         <Route path="/lagfest" component={AsyncLagfestInfo} />
-        <Route path="/lagfest-fuksit" component={AsyncFuksiLagfestInfo} />
         <Route path="/lagfest-setätäti" component={AsyncVanhusLagfestInfo} />
       </Switch>
     );

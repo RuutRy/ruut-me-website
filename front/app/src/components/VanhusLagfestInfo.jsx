@@ -10,8 +10,8 @@ import "./LagfestInfo.css";
 
 //Todo update this page to actually work
 
-const formUrl = "https://ruut.me/api/lagfest-signup-fuksit";
-const signupsUrl = "https://ruut.me/api/signups-fuksit";
+const formUrl = "https://ruut.me/api/lagfest-signup-vanhat";
+const signupsUrl = "https://ruut.me/api/signups-vanhat";
 
 const signupMax = 80;
 
@@ -51,8 +51,8 @@ class LagfestInfo extends Component {
     super(props);
 
     this.targetRegistration = new Date(2023, 1, 9, 16);
-    this.targetStart = new Date(2023, 2, 3, 16);
-    this.targetEnd = new Date(2023, 2, 5, 12);
+    this.targetStart = new Date(2023, 9, 19, 16);
+    this.targetEnd = new Date(2023, 9, 22, 12);
 
     this.state = {
       dateString: this.getDateString(new Date(), this.targetStart),
@@ -370,9 +370,9 @@ class LagfestInfo extends Component {
     return (
       <>
         <section className="nes-container with-title">
-          <h2 className="title">Tutustumislanit</h2>
+          <h2 className="title">TätiSetälanit</h2>
           <div>
-            <p>{over ? "Lanit jatkuvat taas syssymmällä" : dateString}</p>
+            <p>{over ? "TätiSetälanit järjestetään 19.9. - 22.9.2024." : dateString}</p>
           </div>
         </section>
 
