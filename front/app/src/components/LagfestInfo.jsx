@@ -461,6 +461,9 @@ class LagfestInfo extends Component {
             {extraEls}
           </section>
         )}
+        <div className="sponsor-container">
+          <img src="/sponsors/Loas_vari.png" alt="Logo of 50 years old Loas." />
+        </div>
       </>
     );
   }
