@@ -43,7 +43,7 @@ class App extends Component {
           <footer className="footer">
             <p>
               <a href="/tietosuojaseloste.pdf">
-                <i className="nes-icon trophy is-small" /> Ruut
+                Tietosuojaseloste
               </a>
             </p>
             <p>(c) Ruut ry 2024</p>
