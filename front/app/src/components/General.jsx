@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import { LutUniversityLink, SaimiaLink } from './links.jsx';
-
 class General extends Component {
   render() {
     return (
@@ -9,15 +7,11 @@ class General extends Component {
         <h2 className="title">Yleistä</h2>
         <div>
           <p>
-            Ruut ry tarjoaa <LutUniversityLink />n ja <SaimiaLink />n opiskelijoille ja henkilökunnalle tietoteknisiä palveluja.
+            Ruut ry on Lappeenrannan kampuksella toimiva yhdistys, jonka missio on yhdistää tietotekniikasta ja videopelaamisesta kiinnostuneita järjestäen videopeliteemaisia tapahtumia ympäri vuoden. 
           </p>
           <p>
-            Muutamia Ruut&apos;n tarjoamia palveluja ovat:
+            Ruutin tunnetuimpia tapahtumia ovat Lagfest lanitapahtumat.
           </p>
-          <ul className="nes-list is-disc">
-            <li>Lagfest-lanit kahdesti vuodessa</li>
-            <li>Assembly Summer -yhteistilaus</li>
-          </ul>
         </div>
       </section>
     );
