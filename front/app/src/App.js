@@ -7,6 +7,7 @@ import "nes.css/css/nes.css";
 
 import Content from "./Content.jsx";
 
+
 class App extends Component {
   render() {
     return (
@@ -41,8 +42,8 @@ class App extends Component {
 
           <footer className="footer">
             <p>
-              <a href="https://www.facebook.com/RuutRy/">
-                <i className="nes-icon facebook is-small" /> Ruut
+              <a href="/tietosuojaseloste.pdf">
+                <i className="nes-icon trophy is-small" /> Ruut
               </a>
             </p>
             <p>(c) Ruut ry 2024</p>
