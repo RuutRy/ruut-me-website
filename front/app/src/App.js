@@ -37,7 +37,7 @@ class App extends Component {
               <button className="nes-btn">Lagfest</button>
             </Link>
             <Link to="/lagfest-setätäti">
-              <button className="nes-btn">Setätätilanit</button>
+              <button className="nes-btn">TätiSetälanit</button>
             </Link>
           </nav>
 
