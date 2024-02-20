@@ -35,7 +35,7 @@ class Contacts extends Component {
             </a>
           </p>
           <h3>Sihteeri</h3>
-          <p>leevi Laitala</p>
+          <p>Leevi Laitala</p>
           <p>
             <a href="mailto:leevi.laitala@student.lut.fi">
               leevi.laitala@student.lut.fi
