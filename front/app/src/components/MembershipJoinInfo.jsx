@@ -9,7 +9,7 @@ class MembershipFeeInfo extends Component {
           <p>Liittyminen Ruut ry:n jäseneksi on ilmaista.</p> 
           <p>Jäsenyyden avulla pääset paremmin vaikuttamaan Ruut ry:n toimintaan, sekä saat käyttöösi jäsenetuja.</p>
           <p>Jäsenedut:</p>
-          <ul>
+          <ul className="nes-list is-disc">
             <li>
               Läsnäolo-, puhe- ja äänioikeus yhdistyksen yleiskokouksissa
             </li>
