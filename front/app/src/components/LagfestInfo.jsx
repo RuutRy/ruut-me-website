@@ -403,7 +403,7 @@ class LagfestInfo extends Component {
           <section className="nes-container with-title">
             <h2 className="title">HUOM!</h2>
             <p>
-              Voit ilmoittautua vasta tuntia myöhemmin, jos sähköpostisi ei ole
+              Voit ilmoittautua vasta kaksi(2) tuntia myöhemmin, jos sähköpostisi ei ole
               muotoa "@student.lut.fi" tai "@student.lab.fi".
             </p>
           </section>
