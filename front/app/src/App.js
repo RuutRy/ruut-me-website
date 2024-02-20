@@ -27,6 +27,9 @@ class App extends Component {
             <Link to="/yhteystiedot">
               <button className="nes-btn">Yhteystiedot</button>
             </Link>
+            <Link to="/jäseneksi">
+              <button className="nes-btn">Jäseneksi</button>
+            </Link>
             <Link to="/jäsenmaksu">
               <button className="nes-btn">Jäsenmaksu</button>
             </Link>

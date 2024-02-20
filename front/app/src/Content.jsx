@@ -8,6 +8,9 @@ import "./Content.css";
 
 const AsyncGeneral = asyncComponent(() => import("./components/General.jsx"));
 const AsyncContacts = asyncComponent(() => import("./components/Contacts.jsx"));
+const AsyncMembershipJoinInfo = asyncComponent(() =>
+  import("./components/MembershipJoinInfo.jsx")
+);
 const AsyncMembershipFeeInfo = asyncComponent(() =>
   import("./components/MembershipFeeInfo.jsx")
 );
@@ -24,6 +27,7 @@ class Content extends Component {
       <Switch>
         <Route path="/" exact component={AsyncGeneral} />
         <Route path="/yhteystiedot" component={AsyncContacts} />
+        <Route path="/jäseneksi" component={AsyncMembershipJoinInfo} />
         <Route path="/jäsenmaksu" component={AsyncMembershipFeeInfo} />
         <Route path="/lagfest" component={AsyncLagfestInfo} />
         <Route path="/lagfest-fuksit" component={AsyncFuksiLagfestInfo} />
