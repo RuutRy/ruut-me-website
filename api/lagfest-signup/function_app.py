@@ -94,7 +94,7 @@ def lagfestSignup(req: func.HttpRequest, outputDocument: func.Out[func.Document]
         if now < signup_start + timedelta(hours=2):
             logging.info('Returned 400 for too early for non student')
             message = json.dumps(
-                {"message": 'Voit ilmoittautua vasta tuntia myohemmin, jos sähkopostisi ei ole muotoa "@student.lut.fi" tai "@student.lab.fi".', "retry": True})
+                {"message": 'Voit ilmoittautua vasta kaksi tuntia myohemmin, jos sähkopostisi ei ole muotoa "@student.lut.fi" tai "@student.lab.fi".', "retry": True})
             return func.HttpResponse(body=message,
                                      status_code=400)
 
