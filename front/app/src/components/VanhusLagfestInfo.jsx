@@ -9,14 +9,14 @@ import "./nes.css.fixes.css";
 import "./LagfestInfo.css";
 
 //Todo update this page to actually work
-
+/*
 const formUrl = "https://ruut.me/api/lagfest-signup-vanhat";
 const signupsUrl = "https://ruut.me/api/signups-vanhat";
 
 const signupMax = 80;
 
 const Star = () => <span style={{ color: "red" }}>*</span>;
-
+*/
 const formatDuration = (left) => {
   const ajat = [
     [24 * 60 * 60 * 1000, "päivä", "päivää"],
@@ -77,7 +77,7 @@ class LagfestInfo extends Component {
     this.sendForm = this.sendForm.bind(this);
     this.validate = this.validate.bind(this);
   }
-
+  /*
   async fetchSignups() {
     let raw = [];
     try {
@@ -303,7 +303,7 @@ class LagfestInfo extends Component {
       </form>
     );
   }
-
+*/
   getDateString(now, target) {
     const diff = new Date(target - now);
     if (diff >= 0) {
@@ -340,9 +340,9 @@ class LagfestInfo extends Component {
 
   render() {
     const { dateString, signupString } = this.state;
+    /*
     const { stage, message } = this.state;
     const { signups, extras } = this.state;
-
     const signupEls = signups.map((s, i) => (
       <div key={i} className="nes-container is-rounded">
         <p>
@@ -360,14 +360,30 @@ class LagfestInfo extends Component {
         {s.yell && <p>"{s.yell}"</p>}
       </div>
     ));
-
+*/
     const now = new Date();
-
+    /*
     const showForm = now >= this.targetRegistration;
     const hideJoin = now >= this.targetStart;
+    */
     const over = now >= this.targetEnd;
 
     return (
+      <>
+        <section className="nes-container with-title">
+          <h2 className="title">TätiSetälanit</h2>
+          <div>
+            <p>
+              {over
+                ? "TätiSetälanit järjestetään 19.9. - 22.9.2024."
+                : dateString}
+            </p>
+          </div>
+        </section>
+      </>
+    );
+
+    /*return (
       <>
         <section className="nes-container with-title">
           <h2 className="title">TätiSetälanit</h2>
@@ -469,6 +485,7 @@ class LagfestInfo extends Component {
         )}
       </>
     );
+    */
   }
 }
 
