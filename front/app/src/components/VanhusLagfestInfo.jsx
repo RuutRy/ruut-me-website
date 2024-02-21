@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-/*
+
 import classNames from "classnames";
-*/
+
 import moment from "moment";
 
 import "./nes.css.fixes.css";
@@ -339,9 +339,8 @@ class LagfestInfo extends Component {
   }
 
   render() {
-    const { dateString } = this.state;
-    /*
     const { dateString, signupString } = this.state;
+    /*
     const { stage, message } = this.state;
     const { signups, extras } = this.state;
     const signupEls = signups.map((s, i) => (
