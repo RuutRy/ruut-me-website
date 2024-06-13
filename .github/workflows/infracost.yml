@@ -70,7 +70,7 @@ jobs:
   # Run Infracost on default branch and update Infracost Cloud
   infracost-default-branch-update:
     name: Infracost Default Branch Update
-    if: github.event_name == 'push' &&  github.ref_name == 'master'
+    if: github.event_name == 'push' &&  github.ref_name == 'main'
     runs-on: ubuntu-latest
     steps:
       - name: Setup Infracost
