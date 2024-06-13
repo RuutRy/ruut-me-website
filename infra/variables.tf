@@ -24,3 +24,4 @@ variable "subscription_id" {
   description = "The current subscription id for the terraform instance"
   type        = string
 }
+
