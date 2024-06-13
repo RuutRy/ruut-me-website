@@ -5,11 +5,13 @@ on:
     paths:
       - "infra/**"
     types: [opened, synchronize, closed]
+    branches:
+      - main
   push:
     paths:
       - "infra/**"
     branches:
-      - master
+      - main
 
 jobs:
   infracost-pull-request-checks:
