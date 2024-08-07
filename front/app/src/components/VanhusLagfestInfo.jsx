@@ -399,7 +399,7 @@ class LagfestInfo extends Component {
             <h2 className="title">Lippujen hinnat</h2>
             <p>Järjestäjät 0€</p>
             <p>
-              Lanittajat 10€
+              Lanittajat 30€
             </p>
           </section>
         )}
