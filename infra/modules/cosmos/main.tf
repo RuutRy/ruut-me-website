@@ -43,3 +43,13 @@ resource "azurerm_cosmosdb_sql_container" "lagfest" {
 
 }
 
+resource "azurerm_cosmosdb_sql_container" "tatiseta" {
+  name                = "ruut-tatiseta"
+  resource_group_name = var.resource_group_name
+  account_name        = azurerm_cosmosdb_account.db.name
+  database_name       = azurerm_cosmosdb_sql_database.main.name
+  partition_key_path  = "/definition/id"
+
+}
+
+
