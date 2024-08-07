@@ -175,6 +175,7 @@ def tatisetaSignup(req: func.HttpRequest, outputDocument: func.Out[func.Document
         ("yell", str),
         ("ticket", str),
         ("gdpr", bool),
+        ("opiskelija",bool),
     ]
 
     s = [
