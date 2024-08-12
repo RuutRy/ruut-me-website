@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Headnought",
+        "src": "/sponsors/headnought.png",
+        "link": "https://headnought.com/recruitment/"
+    },
+    {
+        "name": "M-Files",
+        "src": "/sponsors/m-files.svg",
+        "link": "https://www.m-files.com/careers/"
+    },
+    {
+        "name": "TEK",
+        "src": "/sponsors/tek.png",
+        "link": "https://www.tek.fi/fi/palvelut-ja-edut"
+    },
+    {
+        "name": "Twoday",
+        "src": "/sponsors/twoday.png",
+        "link": "https://www.twoday.fi/tyopaikat"
+    },
+    {
+        "name": "Visma Solutions",
+        "src": "/sponsors/visma.png",
+        "link": "https://vismasolutions.fi/blogi/?_topics=uratarinat%2Csummer-trainee"
+    }
+]

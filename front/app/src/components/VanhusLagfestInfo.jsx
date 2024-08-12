@@ -7,6 +7,7 @@ import moment from "moment";
 import "./nes.css.fixes.css";
 
 import "./LagfestInfo.css";
+import Sponsors from "./Sponsors";
 
 //Todo update this page to actually work
 
@@ -373,7 +374,7 @@ class LagfestInfo extends Component {
         <section className="nes-container with-title">
           <h2 className="title">TätiSetälanit</h2>
           <div>
-            <p>{over ? "TätiSetälanit järjestetään 19.9. - 22.9.2024." : dateString}</p>
+            <>{over ?<p>"TätiSetälanit järjestetään 19.9. - 22.9.2024."</p> : dateString}</>
           </div>
         </section>
 
@@ -437,11 +438,17 @@ class LagfestInfo extends Component {
               </>
             )) || (
               <div>
-                <p>{signupString}</p>
+                <>{signupString}</>
               </div>
             )}
           </section>
         )}
+        {
+          <section  className="nes-container with-title">
+            <h2 className="title">yhteistyökumppanit</h2>
+            <Sponsors class="sponsors-container" />
+          </section>
+        }
         {!over && signups.length > 0 && showForm && (
           <section className="nes-container with-title">
             <h2 className="title">
