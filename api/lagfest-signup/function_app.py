@@ -178,6 +178,9 @@ def tatisetaSignup(req: func.HttpRequest, outputDocument: func.Out[func.Document
         ("opiskelija",str),
     ]
 
+    if data["yell"] is None:
+        data["yell"] = " "
+
     s = [
         field not in data or not isinstance(data[field], type)
         for (field, type) in form_fields
