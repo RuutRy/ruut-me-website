@@ -208,12 +208,12 @@ def tatisetaSignup(req: func.HttpRequest, outputDocument: func.Out[func.Document
             {"message": "Sinun tulee hyvaksya tietojen kasittely GDPRn mukaisesti, jotta voit ilmoittautua.", "retry": True})
         return func.HttpResponse(body=message,
                                  status_code=400)
-    try:
-        re.match(r"^.*@student.l(ut|ab).fi$", data["email"], flags=re.I)
-    except:
+    
+    regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b'
+    if(re.fullmatch(regex, data["email"])):
         logging.warning("No valid email")
         message = json.dumps(
-            {"message": "No valid email.", "retry": True})
+            {"message": "Ei toimiva sähköposti.", "retry": True})
         return func.HttpResponse(body=message,
                                  status_code=400)
 
