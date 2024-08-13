@@ -186,6 +186,7 @@ def tatisetaSignup(req: func.HttpRequest, outputDocument: func.Out[func.Document
     if any(s):
         logging.warning("Invalid data")
         logging.warning(s)
+        logging.warning(data)
         message = json.dumps(
             {"message": "Puutteellinen tai muuten virheellinen lomake.", "retry": True})
         return func.HttpResponse(body=message,
