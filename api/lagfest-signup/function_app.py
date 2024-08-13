@@ -12,7 +12,7 @@ func.HttpResponse.charset = 'utf-8'
 
 TZ = pytz.timezone("Europe/Helsinki")
 signup_start = TZ.localize(datetime(2024, 2, 22, 16))
-signup_start_tatiseta = TZ.localize(datetime(2024, 8, 15, 16))
+signup_start_tatiseta = TZ.localize(datetime(2024, 8, 13, 16))
 
 # Lagfest 
 @app.function_name(name="lagfestSignup")
@@ -201,7 +201,7 @@ def tatisetaSignup(req: func.HttpRequest, outputDocument: func.Out[func.Document
 
     if not data["opiskelija"]:
         data["opiskelija"] = False
-        
+
     if not data["gdpr"]:
         logging.info('Returned 400 for no gdpr agreement')
         message = json.dumps(
