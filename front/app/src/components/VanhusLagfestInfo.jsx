@@ -250,7 +250,7 @@ class LagfestInfo extends Component {
     const fieldSpecs = [
       { key: "name", title: "Koko nimi" },
       { key: "email", title: "Sähköpostiosoite" },
-      { key: "yell", title: "Sotahuuto", required: false },
+      { key: "yell", title: "Sotahuuto", required: false, default: "" },
       {
         key: "ticket",
         title: "Lipun tyyppi (valitse alta)",
