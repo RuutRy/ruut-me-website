@@ -183,6 +183,12 @@ def tatisetaSignup(req: func.HttpRequest, outputDocument: func.Out[func.Document
         for (field, type) in form_fields
     ]
 
+    if not data["opiskelija"]:
+        data["opiskelija"] = False
+
+    if not data["yell"]:
+        data["yell"] = ""
+
     if any(s):
         logging.warning("Invalid data")
         message = json.dumps(
