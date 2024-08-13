@@ -207,7 +207,7 @@ def tatisetaSignup(req: func.HttpRequest, outputDocument: func.Out[func.Document
                                  status_code=400)
     
     regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b'
-    if(re.fullmatch(regex, data["email"])):
+    if(not re.fullmatch(regex, data["email"])):
         logging.warning("No valid email")
         message = json.dumps(
             {"message": "Ei toimiva sähköposti.", "retry": True})
