@@ -265,10 +265,15 @@ class LagfestInfo extends Component {
       },
       {
         key: "opiskelija",
-        title: "Olen opiskelija",
-        type: "flag",
-        required: false,
-        default: false,
+        title: "Kuka olen",
+        type: "multi",
+        options: [
+          { key: "opiskelija", name: "Opiskelija" },
+          {
+            key: "seta",
+            name: "Setä tai täti",
+          },
+        ],
       },
       {
         key: "gdpr",

@@ -175,19 +175,13 @@ def tatisetaSignup(req: func.HttpRequest, outputDocument: func.Out[func.Document
         ("yell", str),
         ("ticket", str),
         ("gdpr", bool),
-        ("opiskelija",bool),
+        ("opiskelija",str),
     ]
 
     s = [
         field not in data or not isinstance(data[field], type)
         for (field, type) in form_fields
     ]
-
-    if not data["opiskelija"]:
-        data["opiskelija"] = False
-
-    if not data["yell"]:
-        data["yell"] = ""
 
     if any(s):
         logging.warning("Invalid data")
