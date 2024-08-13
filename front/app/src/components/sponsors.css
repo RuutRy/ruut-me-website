@@ -1,0 +1,28 @@
+
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: space-evenly;
+  
+}
+
+ul li a {
+  color: white;
+}
+
+ul li a:hover {
+  background-color: #888888;
+}
+
+ul img {
+  object-fit: contain;
+  max-width: 90%;
+  width: 25rem;
+  height: 12rem;
+}
