@@ -199,9 +199,6 @@ def tatisetaSignup(req: func.HttpRequest, outputDocument: func.Out[func.Document
         return func.HttpResponse(body=message,
                                  status_code=400)
 
-    if not data["opiskelija"]:
-        data["opiskelija"] = False
-
     if not data["gdpr"]:
         logging.info('Returned 400 for no gdpr agreement')
         message = json.dumps(

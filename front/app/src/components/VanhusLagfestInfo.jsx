@@ -268,6 +268,7 @@ class LagfestInfo extends Component {
         title: "Olen opiskelija",
         type: "flag",
         required: false,
+        default: false,
       },
       {
         key: "gdpr",
@@ -374,7 +375,13 @@ class LagfestInfo extends Component {
         <section className="nes-container with-title">
           <h2 className="title">TätiSetälanit</h2>
           <div>
-            <>{over ?<p>"TätiSetälanit järjestetään 19.9. - 22.9.2024."</p> : dateString}</>
+            <>
+              {over ? (
+                <p>"TätiSetälanit järjestetään 19.9. - 22.9.2024."</p>
+              ) : (
+                dateString
+              )}
+            </>
           </div>
         </section>
 
@@ -399,9 +406,7 @@ class LagfestInfo extends Component {
           <section className="nes-container with-title">
             <h2 className="title">Lippujen hinnat</h2>
             <p>Järjestäjät 0€</p>
-            <p>
-              Lanittajat 30€
-            </p>
+            <p>Lanittajat 30€</p>
           </section>
         )}
 
@@ -444,7 +449,7 @@ class LagfestInfo extends Component {
           </section>
         )}
         {
-          <section  className="nes-container with-title">
+          <section className="nes-container with-title">
             <h2 className="title">yhteistyökumppanit</h2>
             <Sponsors class="sponsors-container" />
           </section>
