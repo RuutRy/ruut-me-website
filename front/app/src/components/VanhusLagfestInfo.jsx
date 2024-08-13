@@ -250,7 +250,7 @@ class LagfestInfo extends Component {
     const fieldSpecs = [
       { key: "name", title: "Koko nimi" },
       { key: "email", title: "Sähköpostiosoite" },
-      { key: "yell", title: "Sotahuuto", required: false, default: "" },
+      { key: "yell", title: "Sotahuuto", required: false, default: " " },
       {
         key: "ticket",
         title: "Lipun tyyppi (valitse alta)",
@@ -265,7 +265,7 @@ class LagfestInfo extends Component {
       },
       {
         key: "opiskelija",
-        title: "Kuka olen",
+        title: "Kuka olen (valitse alta)",
         type: "multi",
         options: [
           { key: "opiskelija", name: "Opiskelija" },
