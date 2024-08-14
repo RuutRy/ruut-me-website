@@ -2,3 +2,14 @@
   max-height: 10em;
   overflow-y: auto;
 }
+
+.sponsor-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+
+  img {
+    width: 250px;
+    height: auto;
+  }
+}
