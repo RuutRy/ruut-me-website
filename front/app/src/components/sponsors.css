@@ -16,7 +16,7 @@ ul li a {
   color: white;
 }
 
-ul li a:hover {
+ul li img:hover {
   background-color: #888888;
 }
 
