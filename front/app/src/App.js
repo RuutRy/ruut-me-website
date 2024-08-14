@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
-import "./App.css";
-import "nes.css/css/nes.css";
+import './App.css';
+import 'nes.css/css/nes.css';
 
-import Content from "./Content.jsx";
+import Content from './Content.jsx';
 
 
 class App extends Component {

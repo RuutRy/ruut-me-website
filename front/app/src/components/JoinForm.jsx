@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import "./nes.css.fixes.css";
+import './nes.css.fixes.css';
 
 class JoinForm extends Component {
   render() {
