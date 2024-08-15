@@ -1,5 +1,10 @@
 [
     {
+        "name": "Finnos",
+        "src": "/sponsors/Finnos_logo_pysty_RGB.svg",
+        "link": "https://www.finnos.fi/"
+    },
+    {
         "name": "Headnought",
         "src": "/sponsors/headnought.png",
         "link": "https://headnought.com/recruitment/"
@@ -23,5 +28,10 @@
         "name": "Visma Solutions",
         "src": "/sponsors/visma.png",
         "link": "https://vismasolutions.fi/blogi/?_topics=uratarinat%2Csummer-trainee"
+    },
+    {
+        "name": "Biit",
+        "src": "/sponsors/biit.jpg",
+        "link": "https://biit.fi/rekry/"
     }
 ]

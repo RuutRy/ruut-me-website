@@ -9,15 +9,10 @@ ul {
   flex-wrap: wrap;
   justify-content: space-around;
   align-content: space-evenly;
-  
 }
 
-ul li a {
-  color: white;
-}
-
-ul li a:hover {
-  background-color: #888888;
+ul li img:hover {
+  background-color: #adafbc;
 }
 
 ul img {

@@ -1,28 +1,28 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import classNames from "classnames";
+import classNames from 'classnames';
 
-import moment from "moment";
+import moment from 'moment';
 
-import "./nes.css.fixes.css";
+import './nes.css.fixes.css';
 
-import "./LagfestInfo.css";
+import './LagfestInfo.css';
 
 const formUrl =
-  "https://ruut-backend-function-app.azurewebsites.net/api/lagfestSignup";
+  'https://ruut-backend-function-app.azurewebsites.net/api/lagfestSignup';
 const signupsUrl =
-  "https://ruut-backend-function-app.azurewebsites.net/api/lagfest";
+  'https://ruut-backend-function-app.azurewebsites.net/api/lagfest';
 
 const signupMax = 80;
 
-const Star = () => <span style={{ color: "red" }}>*</span>;
+const Star = () => <span style={{ color: 'red' }}>*</span>;
 
 const formatDuration = (left) => {
   const ajat = [
-    [24 * 60 * 60 * 1000, "päivä", "päivää"],
-    [60 * 60 * 1000, "tunti", "tuntia"],
-    [60 * 1000, "minuutti", "minuuttia"],
-    [1000, "sekunti", "sekuntia"],
+    [24 * 60 * 60 * 1000, 'päivä', 'päivää'],
+    [60 * 60 * 1000, 'tunti', 'tuntia'],
+    [60 * 1000, 'minuutti', 'minuuttia'],
+    [1000, 'sekunti', 'sekuntia'],
   ];
 
   const parts = [];
@@ -36,11 +36,11 @@ const formatDuration = (left) => {
     }
   });
   if (parts.length === 0) {
-    return "NYT";
+    return 'NYT';
   } else if (parts.length === 1) {
     return parts[0];
   } else {
-    return `${parts.slice(0, parts.length - 1).join(", ")} ja ${
+    return `${parts.slice(0, parts.length - 1).join(', ')} ja ${
       parts[parts.length - 1]
     }`;
   }
@@ -67,7 +67,7 @@ class LagfestInfo extends Component {
       ticket: null,
       gdpr: null,
 
-      stage: "form",
+      stage: 'form',
     };
 
     this.tick = this.tick.bind(this);
@@ -79,16 +79,14 @@ class LagfestInfo extends Component {
 
   async fetchSignups() {
     let raw = [];
-    try {
-      raw = await window
-        .fetch(signupsUrl, {
-          method: "GET",
-          cors: "cors",
-        })
-        .then((res) => res.json());
-    } catch (ex) {
-      console.error(ex);
-    }
+    await window.fetch(signupsUrl, {
+      method: 'GET',
+      cors: 'cors',
+    })
+      .then((res) => res.json())
+      .then((json) => raw = json)
+      // eslint-disable-next-line no-console
+      .catch((ex) => console.error(ex));
 
     const signups = raw.slice(0, signupMax);
     const extras = raw.slice(signupMax);
@@ -99,34 +97,34 @@ class LagfestInfo extends Component {
     e.preventDefault();
     this.setState(
       {
-        stage: "sending",
+        stage: 'sending',
       },
       async () => {
         try {
           const { name, email, yell, ticket, gdpr } = this.state;
           const data = { name, email, yell, ticket, gdpr };
           const res = await window.fetch(formUrl, {
-            method: "POST",
-            cors: "cors",
-            headers: { "Content-Type": "application/json" },
+            method: 'POST',
+            cors: 'cors',
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data),
           });
           const json = await res.json();
           if (res.status !== 200) {
             this.setState({
-              stage: "error",
-              message: json["message"],
-              retry: !!json["retry"],
+              stage: 'error',
+              message: json['message'],
+              retry: !!json['retry'],
             });
           } else {
             this.fetchSignups();
             this.setState({
-              stage: "sent",
+              stage: 'sent',
             });
           }
         } catch (ex) {
           this.setState({
-            stage: "error",
+            stage: 'error',
             message: null,
             retry: true,
           });
@@ -135,18 +133,18 @@ class LagfestInfo extends Component {
     );
   }
 
-  validate({ key, type = "text", required = true }) {
+  validate({ key, type = 'text', required = true }) {
     const input = this.state[key];
 
     if (input === null) {
       return !required || null;
     }
 
-    if (type === "flag") {
+    if (type === 'flag') {
       return !required || !!input;
     }
 
-    if (type === "multi") {
+    if (type === 'multi') {
       return true;
     }
 
@@ -154,13 +152,13 @@ class LagfestInfo extends Component {
   }
 
   renderField(spec) {
-    const { key, title, type = "text", required = true } = spec;
+    const { key, title, type = 'text', required = true } = spec;
     const onChange = (e) => {
-      if (type === "flag") {
+      if (type === 'flag') {
         this.setState({
           [key]: e.target.checked,
         });
-      } else if (type === "multi") {
+      } else if (type === 'multi') {
         if (e.target.checked) {
           this.setState({
             [key]: e.target.value,
@@ -176,11 +174,11 @@ class LagfestInfo extends Component {
     const result = this.validate(spec);
     const value = this.state[key];
 
-    if (type === "multi") {
+    if (type === 'multi') {
       const { options } = spec;
       const choices = options.map((o) => {
         return (
-          <label key={o.key} style={{ display: "block" }}>
+          <label key={o.key} style={{ display: 'block' }}>
             <input
               className="nes-radio"
               type="radio"
@@ -203,7 +201,7 @@ class LagfestInfo extends Component {
       );
     }
 
-    if (type === "flag") {
+    if (type === 'flag') {
       return (
         <label key={key}>
           <input
@@ -220,9 +218,9 @@ class LagfestInfo extends Component {
       );
     }
 
-    const className = classNames("nes-input", {
-      "is-error": result === false,
-      "is-success": result === true,
+    const className = classNames('nes-input', {
+      'is-error': result === false,
+      'is-success': result === true,
     });
 
     return (
@@ -232,7 +230,7 @@ class LagfestInfo extends Component {
           {required && <Star />}
         </label>
         <input
-          value={value || ""}
+          value={value || ''}
           id={key}
           className={className}
           type={type}
@@ -244,27 +242,27 @@ class LagfestInfo extends Component {
 
   renderForm() {
     const fieldSpecs = [
-      { key: "name", title: "Koko nimi" },
-      { key: "email", title: "Sähköpostiosoite" },
-      { key: "yell", title: "Sotahuuto", required: false },
+      { key: 'name', title: 'Koko nimi' },
+      { key: 'email', title: 'Sähköpostiosoite' },
+      { key: 'yell', title: 'Sotahuuto', required: false },
       {
-        key: "ticket",
-        title: "Lipun tyyppi (valitse alta)",
-        type: "multi",
+        key: 'ticket',
+        title: 'Lipun tyyppi (valitse alta)',
+        type: 'multi',
         options: [
-          { key: "organizer", name: "Järjestäjät 0€" },
+          { key: 'organizer', name: 'Järjestäjät 0€' },
           {
-            key: "active",
+            key: 'active',
             name:
-              "Ruutin jäsen (Ruut ry:n jäsen + jäsenmaksu maksettu vuodelle 2024) 10€ ",
+              'Ruutin jäsen (Ruut ry:n jäsen + jäsenmaksu maksettu vuodelle 2024) 10€ ',
           },
-          { key: "other", name: "Muu LTKY:n/KOE:n opiskelija 15€" },
+          { key: 'other', name: 'Muu LTKY:n/KOE:n opiskelija 15€' },
         ],
       },
       {
-        key: "gdpr",
-        title: "Hyväksyn, että nimeni näkyy osallistujalistalla",
-        type: "flag",
+        key: 'gdpr',
+        title: 'Hyväksyn, että nimeni näkyy osallistujalistalla',
+        type: 'flag',
       },
     ];
 
@@ -277,8 +275,8 @@ class LagfestInfo extends Component {
 
     const fields = fieldSpecs.map(this.renderField);
 
-    const className = classNames("nes-btn", "is-primary", "btn-right", {
-      "is-disabled": !valid,
+    const className = classNames('nes-btn', 'is-primary', 'btn-right', {
+      'is-disabled': !valid,
     });
 
     return (
@@ -305,11 +303,11 @@ class LagfestInfo extends Component {
       return (
         <>
           <p>{formatDuration(diff)}</p>
-          <p>{m.format("YYYY-MM-DD HH:mm")}</p>
+          <p>{m.format('YYYY-MM-DD HH:mm')}</p>
         </>
       );
     } else {
-      return "Onneksi on jo lanit.";
+      return 'Onneksi on jo lanit.';
     }
   }
 
@@ -342,7 +340,7 @@ class LagfestInfo extends Component {
         <p>
           #{i + 1} {s.name}
         </p>
-        {s.yell && <p className="yell">"{s.yell}"</p>}
+        {s.yell && <p className="yell">&quot;{s.yell}&quot;</p>}
       </div>
     ));
 
@@ -351,7 +349,7 @@ class LagfestInfo extends Component {
         <p>
           #{i + 1} {s.name}
         </p>
-        {s.yell && <p>"{s.yell}"</p>}
+        {s.yell && <p>&quot;{s.yell}&quot;</p>}
       </div>
     ));
 
@@ -366,7 +364,7 @@ class LagfestInfo extends Component {
         <section className="nes-container with-title">
           <h2 className="title">Lagfest</h2>
           <div>
-            <p>{over ? "Syksyn LAGFestit järjestetään 21.11. - 24.11.2024" : dateString}</p>
+            <p>{over ? 'Syksyn LAGFestit järjestetään 21.11. - 24.11.2024' : dateString}</p>
           </div>
         </section>
 
@@ -404,7 +402,7 @@ class LagfestInfo extends Component {
             <h2 className="title">HUOM!</h2>
             <p>
               Voit ilmoittautua vasta kaksi(2) tuntia myöhemmin, jos sähköpostisi ei ole
-              muotoa "@student.lut.fi" tai "@student.lab.fi".
+              muotoa &quot;@student.lut.fi&quot; tai &quot;@student.lab.fi&quot;.
             </p>
           </section>
         )}
@@ -412,13 +410,13 @@ class LagfestInfo extends Component {
         {!over && !hideJoin && (
           <section className="nes-container with-title">
             <h2 className="title">
-              Ilmoittautuminen{signups.length >= signupMax && " varasijoille"}
+              Ilmoittautuminen{signups.length >= signupMax && ' varasijoille'}
             </h2>
             {(showForm && (
               <>
-                {stage === "form" && this.renderForm()}
-                {stage === "sending" && <p>Lomaketta lähetetään...</p>}
-                {stage === "sent" && (
+                {stage === 'form' && this.renderForm()}
+                {stage === 'sending' && <p>Lomaketta lähetetään...</p>}
+                {stage === 'sent' && (
                   <>
                     <p>Kiitos ilmoittautumisestasi!</p>
                     <p>
@@ -426,14 +424,14 @@ class LagfestInfo extends Component {
                     </p>
                   </>
                 )}
-                {stage === "error" && (
+                {stage === 'error' && (
                   <>
                     <p>
-                      {message || "Lomaketta lähetettäessä tapahtui virhe."}
+                      {message || 'Lomaketta lähetettäessä tapahtui virhe.'}
                     </p>
                     <button
                       className="nes-btn is-error"
-                      onClick={() => this.setState({ stage: "form" })}
+                      onClick={() => this.setState({ stage: 'form' })}
                     >
                       Yritä uudelleen
                     </button>
