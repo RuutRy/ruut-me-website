@@ -16,7 +16,7 @@ const formUrl =
 const signupsUrl =
   'https://ruut-backend-function-app.azurewebsites.net/api/tatiseta';
 
-const signupMax = 80;
+const signupMax = 85;
 
 const Star = () => <span style={{ color: 'red' }}>*</span>;
 
