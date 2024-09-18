@@ -457,7 +457,7 @@ class LagfestInfo extends Component {
         {
           <section className="nes-container with-title">
             <h2 className="title">Yhteistyökumppanit</h2>
-            <Sponsors class="sponsors-container" />
+            <Sponsors />
           </section>
         }
         {!over && signups.length > 0 && showForm && (

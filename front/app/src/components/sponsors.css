@@ -1,6 +1,4 @@
-
-
-ul {
+ul.sponsors-container {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -9,15 +7,15 @@ ul {
   flex-wrap: wrap;
   justify-content: space-around;
   align-content: space-evenly;
-}
 
-ul li img:hover {
-  background-color: #adafbc;
-}
+  img {
+    object-fit: contain;
+    max-width: 90%;
+    width: 25rem;
+    height: 12rem;
+  }
 
-ul img {
-  object-fit: contain;
-  max-width: 90%;
-  width: 25rem;
-  height: 12rem;
+  img:hover{
+    background-color: #adafbc;
+  }
 }
