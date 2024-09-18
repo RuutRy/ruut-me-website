@@ -22,7 +22,7 @@ class Sponsors extends Component{
   render(){
     const {sponsors} = this.state;
 
-    return(!sponsors.length ? <></> : <ul>
+    return(!sponsors.length ? <></> : <ul className="sponsors-container">
       {sponsors.map(sponsor => <>  
                 <li key={sponsor.name}>
                   <a href={sponsor.link}>
