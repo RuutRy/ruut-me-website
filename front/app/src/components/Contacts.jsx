@@ -14,38 +14,38 @@ class Contacts extends Component {
             </a>
           </p>
           <h3>Varapuheenjohtaja</h3>
-          <p>Noora Parkko</p>
+          <p>Jeremias Wahlsten</p>
           <p>
             <a href="mailto:pj@ruut.me">
               pj@ruut.me
             </a>
           </p>
           <h3>Rahastonhoitaja</h3>
-          <p>Tuomas Mustakallio</p>
+          <p>Santeri Nikula</p>
           <p>
             <a href="mailto:laskutus@ruut.me">
               laskutus@ruut.me
             </a>
           </p>
           <h3>ATK-vastaava</h3>
-          <p>Konsta Keski-Mattinen</p>
+          <p>Pekka Hautaniemi</p>
           <p>
             <a href="mailto:atk@ruut.me">
               atk@ruut.me
             </a>
           </p>
           <h3>Sihteeri</h3>
-          <p>Leevi Laitala</p>
+          <p>Eelis Ojainmaa</p>
           <p>
             <a href="mailto:sihteeri@ruut.me">
               sihteeri@ruut.me
             </a>
           </p>
-          <h3>Hallituksen jäsen</h3>
-          <p>Jeremias Walhsten</p>
+          <h3>Yrityssuhdevastaava</h3>
+          <p>Vilppu Penttilä</p>
           <p>
-            <a href="mailto:jeremias.walhsten@ruut.me">
-              jeremias.walhsten@ruut.me
+            <a href="mailto:yritys@ruut.me">
+              yritys@ruut.me
             </a>
           </p>
         </div>
