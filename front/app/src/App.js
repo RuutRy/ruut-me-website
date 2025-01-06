@@ -52,7 +52,7 @@ class App extends Component {
                 Tietosuojaseloste
               </a>
             </p>
-            <p>(c) Ruut ry 2024</p>
+            <p>(c) Ruut ry 2025</p>
           </footer>
         </div>
       </Router>

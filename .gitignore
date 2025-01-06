@@ -47,3 +47,5 @@ __pycache__/
 *.tfstate
 *.tfstate.backup
 *.lock.hcl
+
+.idea
