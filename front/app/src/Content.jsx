@@ -1,25 +1,25 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch } from 'react-router-dom';
 
-import asyncComponent from "./AsyncComponent.jsx";
+import asyncComponent from './AsyncComponent.jsx';
 
-import "./Content.css";
+import './Content.css';
 
-const AsyncGeneral = asyncComponent(() => import("./components/General.jsx"));
-const AsyncContacts = asyncComponent(() => import("./components/Contacts.jsx"));
+const AsyncGeneral = asyncComponent(() => import('./components/General.jsx'));
+const AsyncContacts = asyncComponent(() => import('./components/Contacts.jsx'));
 const AsyncMembershipJoinInfo = asyncComponent(() =>
-  import("./components/MembershipJoinInfo.jsx")
+  import('./components/MembershipJoinInfo.jsx')
 );
 const AsyncMembershipFeeInfo = asyncComponent(() =>
-  import("./components/MembershipFeeInfo.jsx")
+  import('./components/MembershipFeeInfo.jsx')
 );
 const AsyncLagfestInfo = asyncComponent(() =>
-  import("./components/LagfestInfo.jsx")
+  import('./components/LagfestInfo.jsx')
 );
 
 const AsyncVanhusLagfestInfo = asyncComponent(() =>
-  import("./components/VanhusLagfestInfo.jsx")
+  import('./components/VanhusLagfestInfo.jsx')
 );
 
 class Content extends Component {

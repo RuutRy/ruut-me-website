@@ -7,6 +7,12 @@ on:
       - ".github/workflows/react-upload.yaml"
     branches:
       - main
+  pull_request:
+    paths:
+      - "front/**"
+      - ".github/workflows/react-upload.yaml"
+    branches:
+      - main
 
 # Special permissions required for OIDC authentication
 permissions:
@@ -14,7 +20,7 @@ permissions:
   contents: read
 
 env:
-  NODE_VERSION: 11 # Yeah, I know it is old, but I ain't updating this
+  NODE_VERSION: 21
   ARM_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID }}"
   ARM_SUBSCRIPTION_ID: "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
   ARM_TENANT_ID: "${{ secrets.AZURE_TENANT_ID }}"
@@ -45,12 +51,14 @@ jobs:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        if: github.event_name != 'pull_request'
 
       - name: Upload to blob storage
         uses: azure/CLI@v2
         with:
           inlineScript: |
             az storage blob upload-batch --overwrite --account-name odwproductionstorage -d '$web' -s ./front/app/build
+        if: github.event_name != 'pull_request'
 
       - name: logout
         run: |

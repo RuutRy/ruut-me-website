@@ -23,13 +23,14 @@ class Sponsors extends Component{
     const {sponsors} = this.state;
 
     return(!sponsors.length ? <></> : <ul className="sponsors-container">
-      {sponsors.map(sponsor => <>  
-                <li key={sponsor.name}>
-                  <a href={sponsor.link}>
-                    <img src={sponsor.src} alt={sponsor.name} />
-                  </a>
-                </li>
-              </>  
+      {sponsors.map(sponsor =>
+        <>
+          <li key={sponsor.name}>
+            <a href={sponsor.link}>
+              <img src={sponsor.src} alt={sponsor.name} />
+            </a>
+          </li>
+        </>
       )}
     </ul>);
   }
