@@ -28,7 +28,7 @@ env:
 jobs:
   deploy:
     name: "Azure deploy"
-    environment: production
+    environment: ${{ github.ref_name == main && production || testing }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
