@@ -63,4 +63,4 @@ jobs:
       - name: logout
         run: |
           az logout
-        if: always()
+        if: always() && github.event_name != 'pull_request'
