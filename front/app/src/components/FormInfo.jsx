@@ -33,7 +33,7 @@ class FormInfo extends Component {
           kirjallisesti yhdistyksen puheenjohtajalle taikka rahastonhoitajalle.
           Opintojen päättyessä Aktiivijäsenten on mahdollista muuttaa
           jäsenyytensä Vanhaksi jäsenyydeksi. Yhdistyksen jäsenmaksu kaudelle
-          2024 on 0€, tulevien kausien jäsenmaksuista sovitaan yhdistyksen
+          2025 on 0€, tulevien kausien jäsenmaksuista sovitaan yhdistyksen
           syyskokouksissa.
         </p>
         <p className="long-text">
@@ -58,7 +58,7 @@ class FormInfo extends Component {
           hallituksen kokouksessa.
         </p>
         <p className="long-text">
-          Vuoden 2024 jäseneksi liityttään holvin verkkokaupan kautta
+          Vuoden 2025 jäseneksi liityttään holvin verkkokaupan kautta
           osoitteesta:
           https://holvi.com/shop/lagfest/product/6f1aa3eb35858778c3821ef7ac084249/
         </p>
