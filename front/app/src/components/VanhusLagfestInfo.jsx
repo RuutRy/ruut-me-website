@@ -53,9 +53,9 @@ class LagfestInfo extends Component {
   constructor(props) {
     super(props);
 
-    this.targetRegistration = new Date(2024, 7, 15, 16);
-    this.targetStart = new Date(2024, 8, 19, 16);
-    this.targetEnd = new Date(2024, 8, 22, 12);
+    this.targetRegistration = new Date(2025, 7, 21, 16);
+    this.targetStart = new Date(2025, 8, 18, 16);
+    this.targetEnd = new Date(2025, 8, 21, 12);
 
     this.state = {
       dateString: this.getDateString(new Date(), this.targetStart),
@@ -457,7 +457,10 @@ class LagfestInfo extends Component {
         {
           <section className="nes-container with-title">
             <h2 className="title">Yhteistyökumppanit</h2>
-            <Sponsors />
+            {
+              /* TODO: Update sponsors and enable them -->
+              <Sponsors /> */
+            }
           </section>
         }
         {!over && signups.length > 0 && showForm && (
