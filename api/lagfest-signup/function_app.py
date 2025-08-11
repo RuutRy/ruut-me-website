@@ -11,8 +11,8 @@ func.HttpResponse.mimetype = 'application/json'
 func.HttpResponse.charset = 'utf-8'
 
 TZ = pytz.timezone("Europe/Helsinki")
-signup_start = TZ.localize(datetime(2025, 1, 30, 16))
-signup_start_tatiseta = TZ.localize(datetime(2024, 8, 15, 16))
+signup_start = TZ.localize(datetime(2025, 10, 23, 16))
+signup_start_tatiseta = TZ.localize(datetime(2025, 8, 21, 16))
 
 # Lagfest 
 @app.function_name(name="lagfestSignup")

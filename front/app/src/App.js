@@ -39,7 +39,7 @@ class App extends Component {
             <Link to="/lagfest-setätäti">
               <button className="nes-btn">TätiSetälanit</button>
             </Link>
-            <a href="https://haalarilanit.ruut.me/">
+            <a href="https://haalarilan.it/">
               <button className="nes-btn">Haalarilanit</button>
             </a>
           </nav>
