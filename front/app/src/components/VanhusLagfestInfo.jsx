@@ -383,7 +383,7 @@ class LagfestInfo extends Component {
           <div>
             <>
               {over ? (
-                <p>&quot;TätiSetälanit järjestetään 19.9. - 22.9.2024.&quot;</p>
+                <p>&quot;Nähdään taas seuraavilla TätiSetälaneille!&quot;</p>
               ) : (
                 dateString
               )}
