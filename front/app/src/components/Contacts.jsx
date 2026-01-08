@@ -7,14 +7,14 @@ class Contacts extends Component {
         <h2 className="title">Yhteystiedot</h2>
         <div>
           <h3>Puheenjohtaja</h3>
-          <p>Miko Mattila</p>
+          <p>Noora Parkko</p>
           <p>
             <a href="mailto:pj@ruut.me">
               pj@ruut.me
             </a>
           </p>
           <h3>Varapuheenjohtaja</h3>
-          <p>Jeremias Wahlsten</p>
+          <p>Jesse Mäkelä</p>
           <p>
             <a href="mailto:pj@ruut.me">
               pj@ruut.me
@@ -28,7 +28,7 @@ class Contacts extends Component {
             </a>
           </p>
           <h3>ATK-vastaava</h3>
-          <p>Pekka Hautaniemi</p>
+          <p>Pekka Marttila</p>
           <p>
             <a href="mailto:atk@ruut.me">
               atk@ruut.me
@@ -42,7 +42,7 @@ class Contacts extends Component {
             </a>
           </p>
           <h3>Yrityssuhdevastaava</h3>
-          <p>Vilppu Penttilä</p>
+          <p>Santeri Päivänranta</p>
           <p>
             <a href="mailto:yritys@ruut.me">
               yritys@ruut.me
