@@ -50,9 +50,9 @@ class LagfestInfo extends Component {
   constructor(props) {
     super(props);
 
-    this.targetRegistration = new Date(2025, 9, 23, 16);
-    this.targetStart = new Date(2025, 10, 20, 16);
-    this.targetEnd = new Date(2025, 10, 23, 12);
+    this.targetRegistration = new Date(2026, 0, 29, 16);
+    this.targetStart = new Date(2026, 1, 26, 16);
+    this.targetEnd = new Date(2026, 2, 1, 12);
 
     this.state = {
       dateString: this.getDateString(new Date(), this.targetStart),
@@ -364,7 +364,7 @@ class LagfestInfo extends Component {
         <section className="nes-container with-title">
           <h2 className="title">Lagfest</h2>
           <div>
-            <p>{over ? 'Syksyn LAGFestit järjestetään 21.11. - 24.11.2024' : dateString}</p>
+            <p>{over ? 'Syksyn LAGFestit järjestetään dd.mm. - dd.mm.2026' : dateString}</p>
           </div>
         </section>
 
