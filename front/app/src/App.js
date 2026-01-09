@@ -39,6 +39,9 @@ class App extends Component {
             <Link to="/lagfest-setätäti">
               <button className="nes-btn">TätiSetälanit</button>
             </Link>
+            <a href="/finnish-game-jam">
+              <button className="nes-btn">Finnish Game Jam</button>
+            </a>
             <a href="https://haalarilan.it/">
               <button className="nes-btn">Haalarilanit</button>
             </a>

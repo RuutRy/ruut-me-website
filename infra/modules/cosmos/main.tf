@@ -52,4 +52,11 @@ resource "azurerm_cosmosdb_sql_container" "tatiseta" {
 
 }
 
+resource "azurerm_cosmosdb_sql_container" "gamejam" {
+  name                = "ruut-gamejam"
+  resource_group_name = var.resource_group_name
+  account_name        = azurerm_cosmosdb_account.db.name
+  database_name       = azurerm_cosmosdb_sql_database.main.name
+  partition_key_path  = "/definition/id"
 
+}
