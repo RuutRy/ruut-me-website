@@ -13,6 +13,7 @@ func.HttpResponse.charset = 'utf-8'
 TZ = pytz.timezone("Europe/Helsinki")
 signup_start = TZ.localize(datetime(2025, 10, 23, 16))
 signup_start_tatiseta = TZ.localize(datetime(2025, 8, 21, 16))
+signup_start_gamejam = TZ.localize(datetime(2026, 1, 10, 16))
 
 # Lagfest 
 @app.function_name(name="lagfestSignup")
@@ -248,6 +249,114 @@ def tatiseta(req: func.HttpRequest, documents: func.DocumentList) -> func.HttpRe
     for doc in documents:
         participant = {"name": doc.get("name"), "yell": doc.get(
             "yell")}
+        participants.append(participant)
+    logging.info(f"result of {participants}")
+    message = json.dumps(participants)
+    return func.HttpResponse(body=message,
+                             status_code=200)
+
+# Gamejam
+@app.function_name(name="gamejamSignup")
+@app.route(route="gamejamSignup", auth_level=func.AuthLevel.ANONYMOUS, methods=["POST"])
+@app.cosmos_db_output(arg_name="outputDocument", database_name="main",
+                      container_name="ruut-gamejam", connection="COSMOS_CONNECTION_STRING")
+def gamejamSignup(req: func.HttpRequest, outputDocument: func.Out[func.Document]) -> func.HttpResponse:
+    now = datetime.now(tz=TZ)
+    logging.info(
+        f'Python HTTP trigger function processed a request. Time is {now}')
+
+    if now < signup_start_gamejam:
+        logging.info('Returned 400 for too early submission')
+        message = json.dumps(
+            {"message": "Ilmoittautuminen ei ole viela auki", "retry": True})
+        return func.HttpResponse(body=message,
+                                 status_code=400)
+
+    try:
+        data = req.get_json()
+    except:
+        logging.info('Returned 400 for no data')
+        message = json.dumps(
+            {"message": "Et antanut mitaan tietoja", "retry": False})
+        return func.HttpResponse(body=message,
+                                 status_code=400)
+
+    if not data:
+        logging.info('Returned 400 for no data')
+        message = json.dumps(
+            {"message": "Et antanut mitaan tietoja", "retry": False})
+        return func.HttpResponse(body=message,
+                                 status_code=400)
+
+    form_fields = [
+        ("name", str),
+        ("email", str),
+        ("gdpr", bool),
+    ]
+
+    s = [
+        field not in data or not isinstance(data[field], type)
+        for (field, type) in form_fields
+    ]
+
+    if any(s):
+        logging.warning("Invalid data")
+        message = json.dumps(
+            {"message": "Puutteellinen tai muuten virheellinen lomake.", "retry": True})
+        return func.HttpResponse(body=message,
+                                 status_code=400)
+
+    try:
+        data["gdpr"]
+    except:
+        logging.warning("no gdpr data")
+        message = json.dumps(
+            {"message": "Sinun tulee hyvaksya tietojen kasittely GDPRn mukaisesti, jotta voit ilmoittautua.", "retry": True})
+        return func.HttpResponse(body=message,
+                                 status_code=400)
+
+    if not data["gdpr"]:
+        logging.info('Returned 400 for no gdpr agreement')
+        message = json.dumps(
+            {"message": "Sinun tulee hyvaksya tietojen kasittely GDPRn mukaisesti, jotta voit ilmoittautua.", "retry": True})
+        return func.HttpResponse(body=message,
+                                 status_code=400)
+    regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b'
+    if(not re.fullmatch(regex, data["email"])):
+        logging.warning("No valid email")
+        message = json.dumps(
+            {"message": "Ei toimiva sähköposti.", "retry": True})
+        return func.HttpResponse(body=message,
+                                 status_code=400)
+    signup = {}
+
+    for field, _ in form_fields:
+        if field in data:
+            signup[field] = data[field]
+
+    signup["time"] = datetime.now(tz=TZ).isoformat()
+    signup["id"] = uuid.uuid4().hex
+    logging.info(f"{signup}")
+
+    outputDocument.set(func.Document.from_dict(signup))
+
+    logging.info(f"Successful submission for {data.get('name')}.")
+    message = json.dumps({"message": "Kiitos ilmoittautumisestasi!"})
+    return func.HttpResponse(body=message,
+                             status_code=200)
+
+@app.function_name(name="gamejam")
+@app.route(route="gamejam", auth_level=func.AuthLevel.ANONYMOUS, methods=["GET"])
+@app.cosmos_db_input(arg_name="documents",
+                     database_name="main",
+                     container_name="ruut-gamejam",
+                     sql_query="SELECT * FROM c ORDER BY c.time ASC",
+                     connection="COSMOS_CONNECTION_STRING")
+def gamejam(req: func.HttpRequest, documents: func.DocumentList) -> func.HttpResponse:
+    logging.info(f"Something {documents}")
+    participants = []
+    for doc in documents:
+        participant = {"name": doc.get("name")}
         participants.append(participant)
     logging.info(f"result of {participants}")
     message = json.dumps(participants)
