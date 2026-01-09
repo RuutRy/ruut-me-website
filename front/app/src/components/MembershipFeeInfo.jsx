@@ -6,7 +6,7 @@ class MembershipFeeInfo extends Component {
       <section className="form nes-container with-title">
         <h2 className="title">Jäsenmaksu</h2>
         <div>
-          <p>Ruut&apos;n jäsenmaksu vuodelle 2025 on</p>
+          <p>Ruut&apos;n jäsenmaksu vuodelle 2026 on</p>
           <ul className="nes-list is-disc">
             <li>Aktiivijäsenelle 5€</li>
             <li>Kannatusjäsenelle 25€</li>
