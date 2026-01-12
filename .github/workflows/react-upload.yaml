@@ -57,7 +57,7 @@ jobs:
         uses: azure/CLI@v2
         with:
           inlineScript: |
-            az storage blob upload-batch --overwrite --account-name odwproductionstorage --auth-mode key -d '$web' -s ./front/app/build
+            az storage blob upload-batch --overwrite --account-name odwproductionstorage --auth-mode key -d '$web' -s ./front/app/build --connection-string "${{ secrets.STATIC_STORAGE_CONNECTION_STRING }}"
         if: github.event_name != 'pull_request'
 
       - name: logout
