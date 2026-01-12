@@ -323,7 +323,6 @@ class GameJamInfo extends Component {
         <p>
           #{i + 1} {s.name}
         </p>
-        {s.yell && <p className="yell">&quot;{s.yell}&quot;</p>}
       </div>
     ));
 
