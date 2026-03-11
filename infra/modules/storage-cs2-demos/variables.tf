@@ -22,7 +22,7 @@ variable "sku" {
 
 variable "access_tier" {
   description = "The access tier of the storage account."
-  default     = "Cold"
+  default     = "Cool"
 }
 
 variable "enable_https_traffic" {
