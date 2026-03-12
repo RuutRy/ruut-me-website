@@ -29,6 +29,12 @@ resource "azurerm_linux_function_app" "backend" {
     type  = "SQLServer"
     value = var.connection_string
   }
+
+  app_settings = {
+    CS2_DEMOS_CONNECTION_STRING = var.cs2_demos_connection_string
+    CS2_DEMOS_CONTAINER_NAME    = var.cs2_demos_container_name
+  }
+
   site_config {
     application_stack {
       python_version = "3.10"

@@ -4,7 +4,9 @@ import pytz
 import json
 import re
 import uuid
+import os
 from datetime import datetime, timedelta
+from azure.storage.blob import BlobServiceClient
 
 app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
 func.HttpResponse.mimetype = 'application/json'
@@ -253,3 +255,25 @@ def tatiseta(req: func.HttpRequest, documents: func.DocumentList) -> func.HttpRe
     message = json.dumps(participants)
     return func.HttpResponse(body=message,
                              status_code=200)
+
+
+# CS2 demos
+@app.function_name(name="kiltacs")
+@app.route(route="kiltacs", auth_level=func.AuthLevel.ANONYMOUS, methods=["GET"])
+def kiltacs(req: func.HttpRequest) -> func.HttpResponse:
+    connection_string = os.environ["CS2_DEMOS_CONNECTION_STRING"]
+    container_name = os.environ["CS2_DEMOS_CONTAINER_NAME"]
+
+    blob_service_client = BlobServiceClient.from_connection_string(connection_string)
+    container_client = blob_service_client.get_container_client(container_name)
+
+    demos = []
+    for blob in container_client.list_blobs():
+        blob_client = container_client.get_blob_client(blob.name)
+        demos.append({"name": blob.name, "url": blob_client.url})
+
+    return func.HttpResponse(
+        body=json.dumps(demos),
+        status_code=200,
+        mimetype="application/json",
+    )

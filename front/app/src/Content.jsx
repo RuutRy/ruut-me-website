@@ -22,6 +22,8 @@ const AsyncVanhusLagfestInfo = asyncComponent(() =>
   import('./components/VanhusLagfestInfo.jsx')
 );
 
+const AsyncKiltacs = asyncComponent(() => import('./components/Kiltacs.jsx'));
+
 class Content extends Component {
   render() {
     return (
@@ -32,6 +34,7 @@ class Content extends Component {
         <Route path="/jäsenmaksu" component={AsyncMembershipFeeInfo} />
         <Route path="/lagfest" component={AsyncLagfestInfo} />
         <Route path="/lagfest-setätäti" component={AsyncVanhusLagfestInfo} />
+        <Route path="/kiltacs" component={AsyncKiltacs} />
       </Switch>
     );
   }

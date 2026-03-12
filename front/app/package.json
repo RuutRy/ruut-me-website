@@ -26,10 +26,10 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "globals": "^15.14.0",
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.17.0",
     "eslint": "9.17.0",
-    "eslint-plugin-react": "^7.12.4"
+    "eslint-plugin-react": "^7.12.4",
+    "globals": "^15.14.0"
   }
 }
