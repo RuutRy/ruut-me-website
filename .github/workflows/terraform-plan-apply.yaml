@@ -72,6 +72,7 @@ jobs:
         id: tf-plan
         env:
           TF_VAR_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          TF_VAR_cs2_demo_key: ${{ secrets.CS2_DEMO_KEY }}
         run: |
           export exitcode=0
           terraform -chdir=infra plan -detailed-exitcode -no-color -out tfplan || export exitcode=$?
@@ -97,6 +98,7 @@ jobs:
         id: tf-plan-string
         env:
           TF_VAR_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          TF_VAR_cs2_demo_key: ${{ secrets.CS2_DEMO_KEY }}
         run: |
           TERRAFORM_PLAN=$(terraform -chdir=infra show -no-color tfplan)
 
@@ -176,4 +178,5 @@ jobs:
       - name: Terraform Apply
         env:
           TF_VAR_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          TF_VAR_cs2_demo_key: ${{ secrets.CS2_DEMO_KEY }}
         run: terraform -chdir=infra apply -auto-approve tfplan
