@@ -24,3 +24,9 @@ variable "subscription_id" {
   description = "The current subscription id for the terraform instance"
   type        = string
 }
+
+variable "cs2_demo_key" {
+  description = "Password key for the CS2 demo file listing endpoint"
+  type        = string
+  sensitive   = true
+}
