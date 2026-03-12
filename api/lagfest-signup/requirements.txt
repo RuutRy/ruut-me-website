@@ -4,3 +4,4 @@
 
 azure-functions
 pytz
+azure-storage-blob

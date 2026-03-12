@@ -65,12 +65,15 @@ module "cosmos" {
 module "function" {
   source = "./modules/functions"
 
-  resource_group_name = azurerm_resource_group.rg.name
-  location            = var.location
-  connection_string   = module.cosmos.connection_string
+  resource_group_name         = azurerm_resource_group.rg.name
+  location                    = var.location
+  connection_string           = module.cosmos.connection_string
+  cs2_demos_connection_string = module.storage_cs2_demos.primary_connection_string
+  cs2_demos_container_name    = module.storage_cs2_demos.container_name
 
   depends_on = [
-    module.cosmos
+    module.cosmos,
+    module.storage_cs2_demos
   ]
 
 }
