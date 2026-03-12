@@ -4,14 +4,22 @@ const DEMO_FILENAME_RE = /^(\d{4})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(.+)\.dem$/;
 const LS_KEY = 'kiltacs_key';
 const API = 'https://ruut-backend-function-app.azurewebsites.net/api/kiltacs';
 
+function pad(n) {
+  return String(n).padStart(2, '0');
+}
+
 function parseDemo(blob) {
   const match = blob.name.match(DEMO_FILENAME_RE);
   if (!match) return null;
   const [, year, month, day, hour, minute, map] = match;
+  const utc = new Date(Date.UTC(+year, +month - 1, +day, +hour, +minute));
+  const localDate =
+    `${utc.getFullYear()}-${pad(utc.getMonth() + 1)}-${pad(utc.getDate())} ` +
+    `${pad(utc.getHours())}:${pad(utc.getMinutes())}`;
   return {
     name: blob.name,
     url: blob.url,
-    date: `${year}-${month}-${day} ${hour}:${minute}`,
+    date: localDate,
     sortKey: `${year}-${month}-${day}-${hour}-${minute}`,
     map,
   };
