@@ -122,7 +122,7 @@ class Kiltacs extends Component {
             </div>
             {passwordError && (
               <p className="nes-text is-error" style={{ marginTop: '0.5rem' }}>
-                Vaara salasana.
+                Väärä salasana.
               </p>
             )}
             <button type="submit" className="nes-btn is-primary" style={{ marginTop: '0.75rem' }}>
