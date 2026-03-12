@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-const DEMO_FILENAME_RE = /^(\d{4})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(.+)\.dem$/;
+const DEMO_FILENAME_RE = /^(\d{4})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(.+?)(?:-\[(\d+)-(\d+)\])?\.dem$/;
 const LS_KEY = 'kiltacs_key';
 const API = 'https://ruut-backend-function-app.azurewebsites.net/api/kiltacs';
 
@@ -11,7 +11,7 @@ function pad(n) {
 function parseDemo(blob) {
   const match = blob.name.match(DEMO_FILENAME_RE);
   if (!match) return null;
-  const [, year, month, day, hour, minute, map] = match;
+  const [, year, month, day, hour, minute, map, scoreA, scoreB] = match;
   const utc = new Date(Date.UTC(+year, +month - 1, +day, +hour, +minute));
   const localDate =
     `${utc.getFullYear()}-${pad(utc.getMonth() + 1)}-${pad(utc.getDate())} ` +
@@ -22,6 +22,7 @@ function parseDemo(blob) {
     date: localDate,
     sortKey: `${year}-${month}-${day}-${hour}-${minute}`,
     map,
+    score: scoreA != null ? `${scoreA} - ${scoreB}` : null,
   };
 }
 
@@ -142,6 +143,7 @@ class Kiltacs extends Component {
               <tr>
                 <th>Päivämäärä</th>
                 <th>Kartta</th>
+                <th>Tulos</th>
                 <th>Lataa</th>
               </tr>
             </thead>
@@ -150,6 +152,7 @@ class Kiltacs extends Component {
                 <tr key={demo.name}>
                   <td>{demo.date}</td>
                   <td>{demo.map}</td>
+                  <td>{demo.score != null ? demo.score : '-'}</td>
                   <td>
                     <a
                       href={demo.url}
