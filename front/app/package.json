@@ -3,7 +3,6 @@
   "version": "0.2.0",
   "private": true,
   "dependencies": {
-    "@azure/storage-blob": "^12.31.0",
     "classnames": "^2.2.6",
     "moment": "^2.24.0",
     "nes.css": "^1.0.0",
