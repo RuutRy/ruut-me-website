@@ -264,13 +264,6 @@ def kiltacs(req: func.HttpRequest) -> func.HttpResponse:
     expected_key = os.environ["CS2_DEMO_KEY"]
     provided_key = req.params.get("key", "")
 
-
-    # debug
-    logging.info(f"Received request for CS2 demos with key: {provided_key}")
-    logging.info(f"Expected key: {expected_key}")
-    logging.info(f"Key match: {provided_key == expected_key}")
-
-
     # non critical endpoint, mainly to prevent bots, thus this simple check is enough
     if provided_key != expected_key:
         return func.HttpResponse(
