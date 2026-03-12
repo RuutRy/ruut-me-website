@@ -261,6 +261,17 @@ def tatiseta(req: func.HttpRequest, documents: func.DocumentList) -> func.HttpRe
 @app.function_name(name="kiltacs")
 @app.route(route="kiltacs", auth_level=func.AuthLevel.ANONYMOUS, methods=["GET"])
 def kiltacs(req: func.HttpRequest) -> func.HttpResponse:
+    expected_key = os.environ["CS2_DEMO_KEY"]
+    provided_key = req.params.get("key", "")
+
+    # non critical endpoint, mainly to prevent bots, thus this simple check is enough
+    if provided_key != expected_key:
+        return func.HttpResponse(
+            body=json.dumps({"message": "Unauthorized"}),
+            status_code=401,
+            mimetype="application/json",
+        )
+
     connection_string = os.environ["CS2_DEMOS_CONNECTION_STRING"]
     container_name = os.environ["CS2_DEMOS_CONTAINER_NAME"]
 

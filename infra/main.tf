@@ -70,6 +70,7 @@ module "function" {
   connection_string           = module.cosmos.connection_string
   cs2_demos_connection_string = module.storage_cs2_demos.primary_connection_string
   cs2_demos_container_name    = module.storage_cs2_demos.container_name
+  cs2_demo_key                = var.cs2_demo_key
 
   depends_on = [
     module.cosmos,

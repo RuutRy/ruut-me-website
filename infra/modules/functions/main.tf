@@ -33,6 +33,7 @@ resource "azurerm_linux_function_app" "backend" {
   app_settings = {
     CS2_DEMOS_CONNECTION_STRING = var.cs2_demos_connection_string
     CS2_DEMOS_CONTAINER_NAME    = var.cs2_demos_container_name
+    CS2_DEMO_KEY                = var.cs2_demo_key
   }
 
   site_config {
@@ -43,7 +44,8 @@ resource "azurerm_linux_function_app" "backend" {
       allowed_origins = [ # For easier testing
         "https://portal.azure.com",
         "https://test.ruut.me",
-        "https://ruut.me"
+        "https://ruut.me",
+        "http://localhost:3000"
       ]
     }
   }
