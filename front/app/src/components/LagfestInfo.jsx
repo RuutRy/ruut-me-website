@@ -364,7 +364,7 @@ class LagfestInfo extends Component {
         <section className="nes-container with-title">
           <h2 className="title">Lagfest</h2>
           <div>
-            <p>{over ? 'Syksyn LAGFestit järjestetään dd.mm. - dd.mm.2026' : dateString}</p>
+            <p>{over ? 'Seuraavat LAGFestit järjestetään keväällä 2027' : dateString}</p>
           </div>
         </section>
 
