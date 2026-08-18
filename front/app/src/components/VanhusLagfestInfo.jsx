@@ -316,13 +316,7 @@ class LagfestInfo extends Component {
   getDateString(now, target) {
     const diff = new Date(target - now);
     if (diff >= 0) {
-      const m = moment(target);
-      return (
-        <>
-          <p>{formatDuration(diff)}</p>
-          <p>{m.format('YYYY-MM-DD HH:mm')}</p>
-        </>
-      );
+      return <p>{formatDuration(diff)}</p>;
     } else {
       return 'Onneksi on jo lanit.';
     }
@@ -381,13 +375,18 @@ class LagfestInfo extends Component {
         <section className="nes-container with-title">
           <h2 className="title">TätiSetälanit</h2>
           <div>
-            <>
-              {over ? (
-                <p>&quot;Nähdään taas seuraavilla TätiSetälaneille!&quot;</p>
-              ) : (
-                dateString
-              )}
-            </>
+            {over ? (
+              <p>&quot;Nähdään taas seuraavilla TätiSetälaneille!&quot;</p>
+            ) : (
+              <>
+                {dateString}
+                <p>
+                  {moment(this.targetStart).format('YYYY-MM-DD HH:mm')} →{' '}
+                  {moment(this.targetEnd).format('YYYY-MM-DD HH:mm')}
+                </p>
+                <p>Tapahtuma järjestetään Ylioppilastalon kellarissa.</p>
+              </>
+            )}
           </div>
         </section>
 
@@ -449,7 +448,10 @@ class LagfestInfo extends Component {
               </>
             )) || (
               <div>
-                <>{signupString}</>
+                {signupString}
+                <p>
+                  {moment(this.targetRegistration).format('YYYY-MM-DD HH:mm')}
+                </p>
               </div>
             )}
           </section>
