@@ -1,3 +1,17 @@
 [
-
+  {
+      "name": "Visma Solutions",
+      "src": "/sponsors/visma.png",
+      "link": "https://www.visma.fi/ura"
+  },
+  {
+      "name": "TEK",
+      "src": "/sponsors/tek.png",
+      "link": "https://www.tek.fi/fi/palvelut-ja-edut"
+  },
+  {
+      "name": "LOAS",
+      "src": "/sponsors/LOAS-logo-vihr.png",
+      "link": "https://www.loas.fi/"
+  }
 ]
